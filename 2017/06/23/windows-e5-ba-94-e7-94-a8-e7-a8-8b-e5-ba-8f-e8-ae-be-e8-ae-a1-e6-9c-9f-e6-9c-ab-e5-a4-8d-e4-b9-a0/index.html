@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="课程," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="第一章：  在Windows操作系统上运行的应用程序叫做Windows应用程序 用户可以使用的、由操作系统提供的C语言函数称作应用编程接口 Windows应用程序都是基于消息驱动的 在窗口中按下鼠标左键的消息是WM_LBUTTONDOWN 在窗口下按下键盘中的任何一个键的消息是WM_KEYDO">
+<meta name="keywords" content="课程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows应用程序设计期末复习">
+<meta property="og:url" content="http://yoursite.com/2017/06/23/windows-e5-ba-94-e7-94-a8-e7-a8-8b-e5-ba-8f-e8-ae-be-e8-ae-a1-e6-9c-9f-e6-9c-ab-e5-a4-8d-e4-b9-a0/index.html">
+<meta property="og:site_name" content="弗卡斯的小站">
+<meta property="og:description" content="第一章：  在Windows操作系统上运行的应用程序叫做Windows应用程序 用户可以使用的、由操作系统提供的C语言函数称作应用编程接口 Windows应用程序都是基于消息驱动的 在窗口中按下鼠标左键的消息是WM_LBUTTONDOWN 在窗口下按下键盘中的任何一个键的消息是WM_KEYDO">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-09T17:06:50.786Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="windows应用程序设计期末复习">
+<meta name="twitter:description" content="第一章：  在Windows操作系统上运行的应用程序叫做Windows应用程序 用户可以使用的、由操作系统提供的C语言函数称作应用编程接口 Windows应用程序都是基于消息驱动的 在窗口中按下鼠标左键的消息是WM_LBUTTONDOWN 在窗口下按下键盘中的任何一个键的消息是WM_KEYDO">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/23/windows-e5-ba-94-e7-94-a8-e7-a8-8b-e5-ba-8f-e8-ae-be-e8-ae-a1-e6-9c-9f-e6-9c-ab-e5-a4-8d-e4-b9-a0/"/>
+
+
+
+
+
+  <title>windows应用程序设计期末复习 | 弗卡斯的小站</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">弗卡斯的小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/23/windows-e5-ba-94-e7-94-a8-e7-a8-8b-e5-ba-8f-e8-ae-be-e8-ae-a1-e6-9c-9f-e6-9c-ab-e5-a4-8d-e4-b9-a0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="a1anpro">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="弗卡斯的小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">windows应用程序设计期末复习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-23T15:15:05+08:00">
+                2017-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/课程小结/" itemprop="url" rel="index">
+                    <span itemprop="name">课程小结</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/23/windows-e5-ba-94-e7-94-a8-e7-a8-8b-e5-ba-8f-e8-ae-be-e8-ae-a1-e6-9c-9f-e6-9c-ab-e5-a4-8d-e4-b9-a0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/06/23/windows-e5-ba-94-e7-94-a8-e7-a8-8b-e5-ba-8f-e8-ae-be-e8-ae-a1-e6-9c-9f-e6-9c-ab-e5-a4-8d-e4-b9-a0/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>第一章：</p>
+<ol>
+<li>在Windows操作系统上运行的应用程序叫做Windows应用程序</li>
+<li>用户可以使用的、由操作系统提供的<em><strong>C语言</strong></em>函数称作应用编程接口</li>
+<li>Windows应用程序都是基于消息驱动的</li>
+<li>在窗口中按下鼠标左键的消息是WM_LBUTTONDOWN</li>
+<li>在窗口下按下键盘中的任何一个键的消息是WM_KEYDO<a id="more"></a>WN</li>
+<li>在窗口中移动鼠标的消息是WN_MOUSEMOVE</li>
+<li>工程项目名为My的MFC中的应用程序类是 CMyApp</li>
+<li>窗口类CFrameWnd的派生类是CMainFrame</li>
+<li>为了和程序的主函数名称相区别，Windows应用程序的主函数名称是 WinMain</li>
+<li>应用程序的主函数的两个任务是：创建应用程序窗口 和 建立消息循环</li>
+<li>在键盘上按任意一个键的消息是 WM_KEYDOWN，对应的消息响应函数名是 OnKeyDown</li>
+<li>假设项目名为My，MFC AppWizard创建的4个类分别是：CMyView、CMyDoc、CMyApp、CMainFrame</li>
+<li>按下鼠标右键的消息是WM_RBUTTONDOWN，对应的消息响应函数是OnRButtonDown（）<br>&nbsp;</li>
+</ol>
+<ul>
+<li><p>名词解释：</p>
+<ul>
+<li>API：应用程序接口。Windows提供了大量预定义的，用C语言编写的函数，这些函数被称为API函数。</li>
+<li>消息：为了描述事件的各种信息，Windows定义了一个结构， 这个结构称为消息</li>
+<li>消息映射：消息与消息响应函数之间一一对应的关系 称为消息映射<br>第二章：</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>简单的说，DC是设备描述环境的简称</li>
+<li>MFC中CDC类的派生类有4个，其中<em><strong>CPaintDC</strong></em>和<strong><em>CClientDC</em></strong>是最常用的</li>
+<li>CClientDC类只能使用在OnDraw（）函数之外的其他消息响应函数中</li>
+<li>MFC中TextOut()函数可以直接使用，不需要任何对象去调用该函数</li>
+<li>MFC中的画笔类是CPen</li>
+<li>MFC中的画刷类是CBrush</li>
+<li>OnDraw（）函数中用来绘制图形的是CPaintDC 对象调用CDC类成员方法</li>
+<li>在整个窗口（不仅是用户区）绘图的设备描述环境是 CWindowDC</li>
+<li>图元文件的设备描述环境类是 CMetaFileDC</li>
+<li>CDC类中用于显示文本的成员函数是 TextOut</li>
+<li>CDC类中用于设置文本颜色的成员函数是SetTextColor</li>
+<li>CDC类中用于设置文字字符间距的成员函数是SetTextCharacterExtra</li>
+<li>CPaintDC类只能使用在OnDraw函数之中</li>
+</ol>
+<ul>
+<li><p>名词解释</p>
+<ul>
+<li>CDC类：将DC和GDI函数封装到一起形成一个类，在MFC中称为CDC类</li>
+<li>CClientDC类：CClientDC类是窗口客户区的设备描述环境，应用在WM_PAINT之外的其他消息的消息处理函数中</li>
+<li>CPaintDC类：CPaintDC类是窗口客户区的设备描述环境，应用处理WM_PAINT消息的OnDraw（）函数中<br>第三章：</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>在MFC中，仍然可以使用Windows和C语言的所有数据类型</li>
+<li>为了把数据和对数据的操作封装到一起，MFC定义了一些通用的数据类。例如，点类CPoint、矩形类CRect和字符串CString等</li>
+<li>在文档/视图结构程序中，文档对象和视图对象分工明确。文档类中保存变量，视图类中负责处理用户和窗口之间的交互</li>
+<li>CSize类的对象表示窗口中一个矩形区域的大小。两个CSize类的对象只要矩形面积大小相同，两个CSize类的对象相等</li>
+<li>MFC中点类的类名是CPoint</li>
+<li>MFC中的矩形类名是CRect</li>
+<li>MFC中数组类的类名是CArray</li>
+<li>链表类的类名是CList</li>
+<li>要使用数组类时，需要在StdAfx.h头文件中添加afxtempl.h的包含命令</li>
+<li>MFC中点类的构造函数是：CPoint(int initX,int initY); CPoint(POINT initPt);</li>
+<li>矩形类的构造函数是：CRect(int l,int t, int r, int b); CRect(const RECT&amp; srcRect);</li>
+<li>尺寸类的构造函数是：CSize(int initCX, int initCY); CSize(SIZE initSize);</li>
+</ol>
+<ul>
+<li><p>语句解释题：</p>
+<ul>
+<li>CString str:定义一个字符串类的对象str，其值为空串</li>
+<li>CString str(“hello”)：定义一个字符串的对象str，其值为“hello”</li>
+<li>CString str(anotherString)：定义一个字符串对象str，其值为另一个字符串类对象。<br>第四章：</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>在MFC APPWizard 中只有3种方式可以确定窗口的样式</li>
+<li>单文档界面和多文档界面是MFC应用程序的两种类型</li>
+<li>MFC APPWizard 设置完应用程序界面以后，在应用程序框架中还可以修改窗口的样式</li>
+<li>使用UpdateAllViews(NULL)函数可以实现所有拆分窗口的同步更新</li>
+<li>提高拆分窗口更新效率的方法由InvalidateRect()函数和OnUpdate()函数</li>
+<li>双文档界面不是MFC应用程序类型，mfc应用程序类型只有两种</li>
+<li>提供支持自动化滚动滑条的类是 CScrollView</li>
+<li>UpdateAllViews(NULL)是让拆分窗口同步更新的函数</li>
+<li>Update不是让视图更新的函数</li>
+<li>拆分窗口最多可以将窗口分为4个</li>
+<li>MFC中除了可以在应用程序向导中设置窗口样式外，还可以通过PreCreateWindow()函数来设置窗口样式</li>
+<li>通过调用API函数SetScrollSizes()来设置初始化滚动条参数，该函数是在视图类的成员函数OnInitialUpdate（）中被调用的</li>
+<li>如果选择CScrollView类作为视图类的基类，创建的窗口将自动带有滚动条</li>
+</ol>
+<ul>
+<li><p>语句解释题：</p>
+<ul>
+<li>单文档界面程序：如果运行程序一次只能打开一个文档，那么这种程序称为单文档界面程序</li>
+<li>多文档界面程序：如果运行程序一次能够打开多个文档，那么这种程序称为多文档界面程序</li>
+<li>拆分窗口同步更新：在某个窗口改变了文档数据以后，其他拆分窗口都能立即显示修改过后的数据的变化<br>第五章：</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>鼠标消息按照操作鼠标时在窗口中的位置可以分为两类。。</li>
+<li>非用户区是指：窗口标题栏、菜单栏、工具栏、状态栏和边框等区域</li>
+<li>键盘消息的数据根据所按键是否为字母键，分为3种（</li>
+<li>在Windows应用程序中使用的虚拟码是与键盘无关的，每个键对应的虚拟码都是固定的</li>
+<li>获得输入焦点的函数为OnSetFocus()，是WM_SETFOCUS对应的消息响应函数</li>
+<li>键盘消息的类型由：WM_CHAR、WM_KEYDOWN、WM_KEYUP</li>
+<li>鼠标消息分为用户区鼠标消息和非用户区鼠标消息</li>
+<li>SetCapture是捕获鼠标的函数</li>
+<li>ReleaseCapture是释放捕获鼠标的函数</li>
+<li>Windows系统的按键消息可以分为3类。</li>
+<li>具有输入焦点的窗口才能接受键盘的消息</li>
+<li>通过在窗口中按下非字母键只能产生按键消息，不产生字符消息</li>
+<li>调用<em><strong>SetCaputre</strong></em>函数可以安全地<em><strong>接受到应用程序窗口外的鼠标消息</strong></em></li>
+</ol>
+<ul>
+<li><p>简答题</p>
+<ul>
+<li>鼠标消息分为用户区鼠标消息和非用户去鼠标消息。鼠标在窗口的白色区域内部操作时，产生用户鼠标消息。鼠标在窗口的标题栏、菜单栏、工具栏状态栏或者边框上操作时，产生非用户区鼠标消息</li>
+<li>只要用鼠标单击该窗口就能够变为输入焦点的窗口。如果让鼠标单击该窗口以外的任何位置，该窗口就会失去输入焦点</li>
+<li>VC++没有像用户区鼠标消息那样为非用户区鼠标消息提供编程工具。如果必须使用非用户区鼠标消息，程序中添加非用户区鼠标消息的消息映射宏，并声明消息响应函数原型，最后定义消息响应函数的函数体。<br>第六章：资源</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>可供Windows应用程序利用，可单独编辑，并可动态加载的数据就是资源</li>
+<li>可以通过对资源视图中添加响应资源并对其进行保存的方法，自动对资源头文件和资源描述文件进行修改</li>
+<li>程序所需的资源使用资源描述文件来说明，在资源头文件中用标识符唯一地进行标识定义</li>
+<li>菜单命令选项可以通过类想到来添加对应的消息响应函数</li>
+<li>在文档/视图结构的程序中，资源的加载是由应用程序类的InitInstance函数中通过构造CDocTemplate（包括其派生类）对象来完成的</li>
+<li>菜单命令选项的使用与Windows的WM_COMMAND消息相关</li>
+<li>菜单命令选项资源标识的前缀是 ID_</li>
+<li>BitBlt 函数可以用来显示位图</li>
+<li>使用SelectObject函数能把位图选入内存设备环境中。</li>
+<li>菜单命令项的消息映射宏的格式是 ON_COMMAND（菜单命令选项ID，消息响应函数）</li>
+<li>菜单命令 选项的加速键（快捷键）在资源描述文件中与所对应的菜单命令选项相关。用户按下它和控制键，就相当于单击 了菜单命令选项</li>
+<li>在Windows应用程序中，位图用CBitmap类的对象类保存</li>
+</ol>
+<ul>
+<li><p>简答题：</p>
+<ul>
+<li><p>简单描述在MFC中使用位图资源的步骤：</p>
+<pre><code>*   定义位图对象-&amp;gt;把位图资源载入位图对象-&amp;gt;获得位图信息-&amp;gt;位图对象选入内存设备环境-&amp;gt;显示位图
+</code></pre><ul>
+<li><p>简单描述在MFC中使用图标资源的步骤：</p>
+<ul>
+<li>首先，用图标编辑器制作图标-&gt;以扩展名为ico把图标文件存盘，在资源描述文件中用描述语句来说明图标文件所在的位置-&gt;保存资源描述文件<br>第七章：控件</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>每个控件都是windows应用程序的子窗口，所有控件类都派生于窗口类CWnd</li>
+<li>控件有各自特有的行为特点，，应该在各自的类中用相应的成员函数实现。</li>
+<li>如果要改变控件的背景颜色则需要用宏 ON_WM_CTLCOLOR()来声明消息映射</li>
+<li>控件的背景颜色默认值是灰色，控件文字的默认颜色是黑色，窗口默认颜色是白色</li>
+<li>设置控件背景颜色的消息响应函数是 OnCtlColor</li>
+<li>按钮控件资源标识的前缀是ID_</li>
+<li>创建按钮控件的代码放在OnCreate中</li>
+<li>设置按钮控件IDC_BUTTON单击事件的消息映射宏是ON_BN_CLICKED(IDB_BUTTON1，OnButtonClicked);</li>
+<li>WS_CHILD,WS_VISIBLE 样式使空间称为窗口的子窗口并且在窗口中可见</li>
+<li>按钮控件的三种不同形式：普通按钮，复选框按钮，单选按钮。</li>
+</ol>
+<ul>
+<li><p>简答题：</p>
+<ul>
+<li><p>简单描述在应用程序的窗口中使用一个按钮控件的步骤：</p>
+<pre><code>*   资源头文件中定义按钮资源标识符-&amp;gt;声明按钮对象名和消息响应函数原型-&amp;gt;定义按钮单击的消息映射宏-&amp;gt;创建按钮控件-&amp;gt;定义按钮的消息响应函数
+</code></pre><ul>
+<li>怎样才能使控件称为窗口的子窗口并且在窗口中可见：<br>第八章：对话框</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>创建对话框是windows应用程序与用户交互的重要手段，对话框可以分为模态对话框和非模态对话框两种类型。</li>
+<li>对话框模版资源可以使用VC++ 的资源编辑器来创建和编辑</li>
+<li>对话框使用数据交换（DDX）机制实现控件与变量之间的数据交换，使用数据检验（DDV）机制检验通过控件录入的数据是否超过限制</li>
+<li>创建模态对话框时，对话框类对象调用DoModal（）函数来显示并运行对话框</li>
+<li>创建非模态对话框时，对话框类对象调用Create（）函数来创建非模态对话框</li>
+<li>属性页是CpropertySheet类派生类的对象，它包含若干属性页面</li>
+<li>属性页面是CpropertyPage类派生类的对象，它是一个对话框</li>
+<li>MFC中对话框类的类名是CDialog</li>
+<li>用MFC ClassWizard为对话框添加成员变量 并与相应的控件进行关联</li>
+<li>用MFC ClassWizard为对话框添加<em><strong>成员变量与相应的控件</strong></em>进行关联。为对话框添加<em><strong>消息映射并与相应的控件消息</strong></em>进行关联</li>
+<li><p>卷子分数分配</p>
+<ul>
+<li>单选20分，1*20 = 20分</li>
+<li>多选10分，2*5 = 10分</li>
+<li>名词解释 2*5=10分</li>
+<li>填空题 2*10=20分</li>
+<li>判断题 20分 = 20分</li>
+<li>编程 123个小题，20分</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续分享~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="a1anpro 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="a1anpro 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/课程/" rel="tag"># 课程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/18/e6-93-8d-e4-bd-9c-e7-b3-bb-e7-bb-9f-e8-80-83-e7-82-b9-e5-a4-8d-e4-b9-a0/" rel="next" title="操作系统考点复习">
+                <i class="fa fa-chevron-left"></i> 操作系统考点复习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/26/e6-88-91-e8-ae-b0-e4-b8-8d-e4-bd-8f-e7-9a-84-e5-8d-95-e8-af-8d-e4-bb-ac-fck/" rel="prev" title="我记不住的单词们  F*CK">
+                我记不住的单词们  F*CK <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="a1anpro" />
+            
+              <p class="site-author-name" itemprop="name">a1anpro</p>
+              <p class="site-description motion-element" itemprop="description">为了星辰和大海</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/a1anpro" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:alanyanhui@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.douban.com/people/53248239" target="_blank" title="douban">
+                    
+                      <i class="fa fa-fw fa-globe"></i>douban</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">弗卡斯</span>
+
+  
+</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共31.9k字</span>
+</div>
+<!--
+</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+-->
+
+
+<!--
+
+  <span class="post-meta-divider">|</span>
+
+-->
+
+<br>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'J9lVBg7bpt7zV1Ibqnu5uTxY-gzGzoHsz',
+        appKey: 'szURUNWm9A82HqH9Bxoiae8k',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

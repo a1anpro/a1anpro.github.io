@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="c++," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="关于类的设计：不同的编程角色 在一些简单的应用程序中，类的用户和类的设计者常常是同一个人。尽管如此，还是要把角色区分开来。当我们设计类的接口时，就应该考虑如何才能使类易于使用；而当我们使用类时，不应该顾及类的实现机理。">
+<meta name="keywords" content="c++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c++基础  类">
+<meta property="og:url" content="http://yoursite.com/2017/07/22/c-e5-9f-ba-e7-a1-80-e7-b1-bb/index.html">
+<meta property="og:site_name" content="弗卡斯的小站">
+<meta property="og:description" content="关于类的设计：不同的编程角色 在一些简单的应用程序中，类的用户和类的设计者常常是同一个人。尽管如此，还是要把角色区分开来。当我们设计类的接口时，就应该考虑如何才能使类易于使用；而当我们使用类时，不应该顾及类的实现机理。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-09T17:06:50.794Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="c++基础  类">
+<meta name="twitter:description" content="关于类的设计：不同的编程角色 在一些简单的应用程序中，类的用户和类的设计者常常是同一个人。尽管如此，还是要把角色区分开来。当我们设计类的接口时，就应该考虑如何才能使类易于使用；而当我们使用类时，不应该顾及类的实现机理。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/22/c-e5-9f-ba-e7-a1-80-e7-b1-bb/"/>
+
+
+
+
+
+  <title>c++基础  类 | 弗卡斯的小站</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">弗卡斯的小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/22/c-e5-9f-ba-e7-a1-80-e7-b1-bb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="a1anpro">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="弗卡斯的小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">c++基础  类</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-22T14:51:59+08:00">
+                2017-07-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c-学习/" itemprop="url" rel="index">
+                    <span itemprop="name">c++学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/22/c-e5-9f-ba-e7-a1-80-e7-b1-bb/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/07/22/c-e5-9f-ba-e7-a1-80-e7-b1-bb/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>关于类的设计：不同的编程角色</p>
+<p>在一些简单的应用程序中，类的用户和类的设计者常常是同一个人。尽管如此，还是要把角色区分开来。当我们设计类的接口时，就应该考虑如何才能使类易于使用；而当我们使用类时，不应该顾及类的实现机理。</p>
+<a id="more"></a>
+<p>&nbsp;</p>
+<h3 id="类成员函数的调用："><a href="#类成员函数的调用：" class="headerlink" title="类成员函数的调用："></a><em><strong><span style="color: #ff0000;">类成员函数的调用：</span></strong></em></h3><p><em><strong>成员函数通过一个名为 this的额外的隐式参数来访问调用它的那个对象。</strong></em>当我们调用一个成员函数时，用请求该函数的对象地址初始化this。例如 调用total.isbn()，则编译器的操作是把total的地址传给isbn的隐式形参this。所以可以等价的写成isbn(&amp;total)//伪代码</p>
+<p>在成员函数的内部，我们可以直接使用调用该函数的对象的成员，而无需通过成员访问符来使用，因为this所指的就是这个对象。任何对类成员的直接访问都是对this的隐式引用。也就是说：如果isbn函数中使用bookid这个成员变量，它隐式的使用this指向的成员，相当于：this-&gt;bookid;</p>
+<p>我们可以在成员函数中使用this：string isbn() const{return this-&gt;bookid;}  因为this的目的总是指向“这个”对象，所以this是一个常量指针，不允许改变this中保存的值。</p>
+<h3 id="重难点-：引入const成员函数"><a href="#重难点-：引入const成员函数" class="headerlink" title="[重难点]：引入const成员函数"></a><span style="color: #00ff00;"><strong>[重难点]：</strong></span><span style="color: #ff0000;"><em><strong>引入const成员函数</strong></em></span></h3><p>isbn函数的另一个关键点就是：在参数表后的const关键字，这里的const的作用是修改隐式this指针的类型。this类型是指向类类型非常量版本的常量指针。比如在Sales_data成员函数中，this的类型就是Sales_data *const类型的。尽管this是隐式的，但是它仍然需要初始化，意味着我们不能把this绑定到一个常量对象上。</p>
+<p>所以我们不能在一个常量对象上调用普通的成员函数。</p>
+<p>如果isbn是一个普通函数而且this是一个普通的指针参数，则我们应该把this声明成const Sales_data *const。毕竟，在isbn函数体内不会改变this所指的对象，所以把this设置为指向常量的指针有助于提高函数的灵活性。</p>
+<p>把const关键字放在成员函数参数列表之后表示this是一个指向常量的指针。像这样的成员函数被称为 常量成员函数。因为this是指向常量的指针（<strong><span style="color: #ff0000;">也就是说这个对象在使用isbn的时候，被this临时变成了const类型，所以不能改变对象的内容。</span></strong>）</p>
+<p>&nbsp;</p>
+<p><strong><em>类作用域和成员函数：编译器分两步处理类：首先编译成员的声明；然后再编译成员的函数体。因此成员函数体可以随意随意使用类中的其他成员而不用在意成员出现的顺序。</em></strong></p>
+<hr>
+<h2 id="返回-this的成员函数："><a href="#返回-this的成员函数：" class="headerlink" title="返回*this的成员函数："></a><em><span style="color: #ff6600;"><strong>返回*this的成员函数：</strong></span></em></h2><p>this是一个隐式的对象指针常量，指向对象本身。而成员函数返回*this即返回的是这个对象本身，并且类型是引用的话，就相当于用的是该对象的原件。例如：</p>
+<p>成员函数Screen &amp;set(char);中返回的是引用，引用的是Screen对象本身。而如果该函数是Screen set(char);返回的是Screen对象的拷贝件，是一个临时副本。</p>
+<p>&nbsp;</p>
+<p><span style="color: #ff0000;"><em><strong>如果成员函数不加const，this 只是一个指针常量；如果加了const的话，那么this是一个指向常量的指针常量。因为const的变量接受的值更多：既能够接受const的量，也能接受非常量的变量。如果加了const的话，在成员函数内部就不能改变该对象的成员变量了。</strong></em></span></p>
+<hr>
+<p>因为非常量版本的函数对于常量对象是不可用的（即：常量对象是不能调用非常量对象的），所以我们只能在一个常量对象上调用const成员函数。另一方面，虽然可以在非常量对象上调用常量版本或者非常量版本，但是显然此时调用非常量版本更为匹配~</p>
+<p>在面对const的成员函数时候，如果返回的是引用类型，则得到的是const的引用。那么对于调用其他的非const成员函数则会报错。所以在遇到这种情况的时候，要用到成员函数重载的功能。即：将功能分为两个函数：一个是针对常量的，另一个是针对非常量的；再调用一个真正实现功能的函数，这个成员函数是const的成员函数，针对别的成员传过来的this指针，这个const会把传来的指针变成指向const对象的指针。</p>
+<p>例如：</p>
+<p>Screen &amp;display();//针对非常量的对象，调用do_display()在调用的时候，会隐式的将this指针传给do_display()，并且会将this指针变成指向常量的指针常量。</p>
+<p>const Screen &amp;display() const;//针对常量的对象。</p>
+<p>void do_display() const{}//真正的功能函数，实现显示的功能。由display()调用。</p>
+<p>因此对于以上两个重载了的成员函数。如果对象是const的，则调用第二个；如果是非常量的，则调用第一个。</p>
+<hr>
+<h2 id="类作用域需要注意的："><a href="#类作用域需要注意的：" class="headerlink" title="类作用域需要注意的："></a><em><strong><span style="color: #ff0000;">类作用域需要注意的：</span></strong></em></h2><p>一旦遇到类名和作用域访问符号(ClasssName::),成员的剩余部分包含在类作用域之中了，剩余部分即：参数列表和函数体。经过这样的声明作用域，我们可以直接使用类的其他成员而无语再授权了。举例：Type ClassName::function(Type1, char){Type2 t; };在这个成员函数中，由于指定了函数的作用域是类的作用域，Type1和Type2（这两个是ClassName这个类中的类型成员）都可以直接使用；而至于Type，如果它是该类中的类型成员，则必须要加上ClassName::Type才正确。</p>
+<hr>
+<h2 id="构造函数使用初始化列表和不使用初始化列表的区别："><a href="#构造函数使用初始化列表和不使用初始化列表的区别：" class="headerlink" title="构造函数使用初始化列表和不使用初始化列表的区别："></a><em><strong><span style="color: #ff0000;">构造函数使用初始化列表和不使用初始化列表的区别：</span></strong></em></h2><p>代码1：</p>
+<p>Sales_data::Sales_data(const string &amp;s, unsigned cnt, double price)</p>
+<p>{</p>
+<p>bookNo = s;</p>
+<p>units_sold = cnt;</p>
+<p>revenue = cnt*price;</p>
+<p>}</p>
+<p>代码2:</p>
+<p>Sales_data::Sales_data(const string &amp;s, unsigned cnt, double price):bookNo(s),units_sold(cnt), revenue(cnt*price){}</p>
+<p>&nbsp;</p>
+<p>这两段代码的区别在于：代码1 没有使用初始化列表，那么没有显示的初始化列表，<span style="color: #ff0000;">成员就会在构造函数体之前执行默认初始化</span>。然后再在函数体内进行赋值。</p>
+<p>而对于代码2 有显式的初始化列表，所以在函数体执行之前就会对成员进行初始化。</p>
+<p><span style="color: #ff0000;"><strong>正因为如此，在某些情况下，必须要使用初始化列表</strong></span>：如果成员中有const和引用类型的话，就必须将其初始化，因为它们没有机会赋值。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续分享~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="a1anpro 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="a1anpro 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c/" rel="tag"># c++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/18/c-e5-9f-ba-e7-a1-80-e5-87-bd-e6-95-b0/" rel="next" title="c++基础 函数">
+                <i class="fa fa-chevron-left"></i> c++基础 函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/31/c-e6-a0-87-e5-87-86-e5-ba-93-e6-b3-9b-e5-9e-8b-e7-ae-97-e6-b3-95/" rel="prev" title="c++标准库 泛型算法">
+                c++标准库 泛型算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="a1anpro" />
+            
+              <p class="site-author-name" itemprop="name">a1anpro</p>
+              <p class="site-description motion-element" itemprop="description">为了星辰和大海</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/a1anpro" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:alanyanhui@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.douban.com/people/53248239" target="_blank" title="douban">
+                    
+                      <i class="fa fa-fw fa-globe"></i>douban</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#类成员函数的调用："><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x7C7B;&#x6210;&#x5458;&#x51FD;&#x6570;&#x7684;&#x8C03;&#x7528;&#xFF1A;" class="headerlink" title="&#x7C7B;&#x6210;&#x5458;&#x51FD;&#x6570;&#x7684;&#x8C03;&#x7528;&#xFF1A;"></a><em><strong><span style="color: #ff0000;">&#x7C7B;&#x6210;&#x5458;&#x51FD;&#x6570;&#x7684;&#x8C03;&#x7528;&#xFF1A;</span></strong></em></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重难点-：引入const成员函数"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x91CD;&#x96BE;&#x70B9;-&#xFF1A;&#x5F15;&#x5165;const&#x6210;&#x5458;&#x51FD;&#x6570;" class="headerlink" title="[&#x91CD;&#x96BE;&#x70B9;]&#xFF1A;&#x5F15;&#x5165;const&#x6210;&#x5458;&#x51FD;&#x6570;"></a><span style="color: #00ff00;"><strong>[&#x91CD;&#x96BE;&#x70B9;]&#xFF1A;</strong></span><span style="color: #ff0000;"><em><strong>&#x5F15;&#x5165;const&#x6210;&#x5458;&#x51FD;&#x6570;</strong></em></span></span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#返回-this的成员函数："><span class="nav-number"></span> <span class="nav-text"><a href="#&#x8FD4;&#x56DE;-this&#x7684;&#x6210;&#x5458;&#x51FD;&#x6570;&#xFF1A;" class="headerlink" title="&#x8FD4;&#x56DE;*this&#x7684;&#x6210;&#x5458;&#x51FD;&#x6570;&#xFF1A;"></a><em><span style="color: #ff6600;"><strong>&#x8FD4;&#x56DE;*this&#x7684;&#x6210;&#x5458;&#x51FD;&#x6570;&#xFF1A;</strong></span></em></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类作用域需要注意的："><span class="nav-number"></span> <span class="nav-text"><a href="#&#x7C7B;&#x4F5C;&#x7528;&#x57DF;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#xFF1A;" class="headerlink" title="&#x7C7B;&#x4F5C;&#x7528;&#x57DF;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#xFF1A;"></a><em><strong><span style="color: #ff0000;">&#x7C7B;&#x4F5C;&#x7528;&#x57DF;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#xFF1A;</span></strong></em></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造函数使用初始化列表和不使用初始化列表的区别："><span class="nav-number"></span> <span class="nav-text"><a href="#&#x6784;&#x9020;&#x51FD;&#x6570;&#x4F7F;&#x7528;&#x521D;&#x59CB;&#x5316;&#x5217;&#x8868;&#x548C;&#x4E0D;&#x4F7F;&#x7528;&#x521D;&#x59CB;&#x5316;&#x5217;&#x8868;&#x7684;&#x533A;&#x522B;&#xFF1A;" class="headerlink" title="&#x6784;&#x9020;&#x51FD;&#x6570;&#x4F7F;&#x7528;&#x521D;&#x59CB;&#x5316;&#x5217;&#x8868;&#x548C;&#x4E0D;&#x4F7F;&#x7528;&#x521D;&#x59CB;&#x5316;&#x5217;&#x8868;&#x7684;&#x533A;&#x522B;&#xFF1A;"></a><em><strong><span style="color: #ff0000;">&#x6784;&#x9020;&#x51FD;&#x6570;&#x4F7F;&#x7528;&#x521D;&#x59CB;&#x5316;&#x5217;&#x8868;&#x548C;&#x4E0D;&#x4F7F;&#x7528;&#x521D;&#x59CB;&#x5316;&#x5217;&#x8868;&#x7684;&#x533A;&#x522B;&#xFF1A;</span></strong></em></span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">弗卡斯</span>
+
+  
+</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共31.9k字</span>
+</div>
+<!--
+</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+-->
+
+
+<!--
+
+  <span class="post-meta-divider">|</span>
+
+-->
+
+<br>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'J9lVBg7bpt7zV1Ibqnu5uTxY-gzGzoHsz',
+        appKey: 'szURUNWm9A82HqH9Bxoiae8k',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
