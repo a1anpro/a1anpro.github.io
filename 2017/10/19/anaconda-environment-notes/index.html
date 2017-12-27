@@ -112,17 +112,17 @@
 
 
 
-<meta name="description" content="为了星辰和大海">
-<meta property="og:type" content="website">
-<meta property="og:title" content="弗卡斯的小站">
-<meta property="og:url" content="http://yoursite.com/README.html">
+<meta name="description" content="#环境：ubuntu16.04conda是anaconda下用于包管理和环境管理的工具，功能上类似pip和virtualenv的组合。安装成功后conda会默认加入到环境变量中，因此可以直接在命令行窗口运行命令conda">
+<meta property="og:type" content="article">
+<meta property="og:title" content="anaconda环境命令笔记">
+<meta property="og:url" content="http://yoursite.com/2017/10/19/anaconda-environment-notes/index.html">
 <meta property="og:site_name" content="弗卡斯的小站">
-<meta property="og:description" content="为了星辰和大海">
+<meta property="og:description" content="#环境：ubuntu16.04conda是anaconda下用于包管理和环境管理的工具，功能上类似pip和virtualenv的组合。安装成功后conda会默认加入到环境变量中，因此可以直接在命令行窗口运行命令conda">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-09T15:12:34.884Z">
+<meta property="og:updated_time" content="2017-12-09T17:06:50.796Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="弗卡斯的小站">
-<meta name="twitter:description" content="为了星辰和大海">
+<meta name="twitter:title" content="anaconda环境命令笔记">
+<meta name="twitter:description" content="#环境：ubuntu16.04conda是anaconda下用于包管理和环境管理的工具，功能上类似pip和virtualenv的组合。安装成功后conda会默认加入到环境变量中，因此可以直接在命令行窗口运行命令conda">
 
 
 
@@ -152,13 +152,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/README.html"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/19/anaconda-environment-notes/"/>
 
 
 
 
 
-  <title> | 弗卡斯的小站</title>
+  <title>anaconda环境命令笔记 | 弗卡斯的小站</title>
   
 
 
@@ -283,33 +283,230 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/19/anaconda-environment-notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="a1anpro">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="弗卡斯的小站">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline"></h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline">anaconda环境命令笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-19T13:41:30+08:00">
+                2017-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-      </div>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python学习/" itemprop="url" rel="index">
+                    <span itemprop="name">python学习</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python学习/工具们/" itemprop="url" rel="index">
+                    <span itemprop="name">工具们</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/19/anaconda-environment-notes/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/10/19/anaconda-environment-notes/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>#环境：ubuntu16.04<br>conda是anaconda下用于包管理和环境管理的工具，功能上类似pip和virtualenv的组合。安装成功后conda会默认加入到环境变量中，因此可以直接在命令行窗口运行命令conda<a id="more"></a></p>
+<p>#创建python3.6版本创建一个名字为python36的环境<br>conda create –name python36 python=3.6</p>
+<p>#激活环境<br>source activate python36</p>
+<p>#查看python版本<br>python -V</p>
+<p>#退出该环境<br>deactivate python36</p>
+<p>#删除该环境<br>conda remove -n python –all</p>
+<p>#查看所有安装的环境<br>conda info -e</p>
+<p>conda的包管理和pip一样：</p>
+<p>#安装matplotlib<br>conda install matplotlib</p>
+<p>#查看所有安装了的包<br>conda list</p>
+<p>#包更新<br>conda update matplotlib</p>
+<p>#删除包<br>conda remove matplotlib</p>
+<p>&nbsp;</p>
+<p>在conda中，anything is a package,conda本身也可以被看做是一个包，python环境也是一个包，anaconda也可以看做是一个包。因此除了普通的第三方包支持更新之外，这三个包也支持更新：</p>
+<p>#更新conda本身<br>conda update conda</p>
+<p>#更新anaconda应用<br>conda update anaconda</p>
+<p>#更新python<br>conda python update</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续分享~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="a1anpro 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="a1anpro 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/12/opencv3.3 ssd/" rel="next" title="opencv3.3中基于ssd算法的目标检测示例教程">
+                <i class="fa fa-chevron-left"></i> opencv3.3中基于ssd算法的目标检测示例教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/19/e6-9c-8d-e5-8a-a1-e5-99-a8-e8-bf-9c-e7-a8-8b-e8-ae-bf-e9-97-ae-e7-9b-b8-e5-85-b3/" rel="prev" title="服务器远程访问相关">
+                服务器远程访问相关 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -365,7 +562,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -376,7 +573,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -387,7 +584,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -464,7 +661,7 @@
 </span>
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共31.9k字</span>
+  <span class="post-count">博客全站共33.0k字</span>
 </div>
 <!--
 </div>

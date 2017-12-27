@@ -101,7 +101,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="c++," />
 
 
 
@@ -112,17 +112,18 @@
 
 
 
-<meta name="description" content="为什么vector不能存引用？标签（空格分隔）： c++/reference CN-5th  遇到了这样一段代码：编译器却报错template&amp;lt;typename T&amp;gt;     void f(T &amp;amp;&amp;amp;t){     vector&amp;lt;T&amp;gt; v; } int main(){     int a = 10;     f(a);     return 0; }a是一个左">
+<meta name="description" content="新标准库中提供的智能指针shared_ptr允许多个指针通过一个对象。它也是模版，因此我们才创建一个智能指针的时候必须要提供指针指向的类型。 默认初始化的智能指针中存着一个空指针:shared_ptr&amp;lt;string&amp;gt; spt;就是一个指向空string的指针。">
+<meta name="keywords" content="c++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="为什么vector不能存引用？">
-<meta property="og:url" content="http://yoursite.com/2017/08/23/319-2/index.html">
+<meta property="og:title" content="c++动态内存中 shared_ptr的理解">
+<meta property="og:url" content="http://yoursite.com/2017/08/03/c++-dynamic-memory-and-shared_ptr/index.html">
 <meta property="og:site_name" content="弗卡斯的小站">
-<meta property="og:description" content="为什么vector不能存引用？标签（空格分隔）： c++/reference CN-5th  遇到了这样一段代码：编译器却报错template&amp;lt;typename T&amp;gt;     void f(T &amp;amp;&amp;amp;t){     vector&amp;lt;T&amp;gt; v; } int main(){     int a = 10;     f(a);     return 0; }a是一个左">
+<meta property="og:description" content="新标准库中提供的智能指针shared_ptr允许多个指针通过一个对象。它也是模版，因此我们才创建一个智能指针的时候必须要提供指针指向的类型。 默认初始化的智能指针中存着一个空指针:shared_ptr&amp;lt;string&amp;gt; spt;就是一个指向空string的指针。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-09T17:06:50.795Z">
+<meta property="og:updated_time" content="2017-12-09T17:06:50.794Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="为什么vector不能存引用？">
-<meta name="twitter:description" content="为什么vector不能存引用？标签（空格分隔）： c++/reference CN-5th  遇到了这样一段代码：编译器却报错template&amp;lt;typename T&amp;gt;     void f(T &amp;amp;&amp;amp;t){     vector&amp;lt;T&amp;gt; v; } int main(){     int a = 10;     f(a);     return 0; }a是一个左">
+<meta name="twitter:title" content="c++动态内存中 shared_ptr的理解">
+<meta name="twitter:description" content="新标准库中提供的智能指针shared_ptr允许多个指针通过一个对象。它也是模版，因此我们才创建一个智能指针的时候必须要提供指针指向的类型。 默认初始化的智能指针中存着一个空指针:shared_ptr&amp;lt;string&amp;gt; spt;就是一个指向空string的指针。">
 
 
 
@@ -152,13 +153,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/23/319-2/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/03/c++-dynamic-memory-and-shared_ptr/"/>
 
 
 
 
 
-  <title>为什么vector不能存引用？ | 弗卡斯的小站</title>
+  <title>c++动态内存中 shared_ptr的理解 | 弗卡斯的小站</title>
   
 
 
@@ -295,7 +296,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/23/319-2/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/c++-dynamic-memory-and-shared_ptr/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="a1anpro">
@@ -312,7 +313,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">为什么vector不能存引用？</h1>
+          <h1 class="post-title" itemprop="name headline">c++动态内存中 shared_ptr的理解</h1>
         
 
         <div class="post-meta">
@@ -324,8 +325,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-23T15:17:05+08:00">
-                2017-08-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T17:20:46+08:00">
+                2017-08-03
               </time>
             
 
@@ -365,8 +366,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/08/23/319-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/08/23/319-2/" itemprop="commentCount"></span>
+                <a href="/2017/08/03/c++-dynamic-memory-and-shared_ptr/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/08/03/c++-dynamic-memory-and-shared_ptr/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -394,19 +395,32 @@
       
 
       
-        <h1 id="为什么vector不能存引用？"><a href="#为什么vector不能存引用？" class="headerlink" title="为什么vector不能存引用？"></a>为什么vector不能存引用？</h1><p>标签（空格分隔）： c++/reference CN-5th</p>
-<hr>
-<p>遇到了这样一段代码：编译器却报错<br><code>template&lt;typename T&gt;
-    void f(T &amp;&amp;t){
-    vector&lt;T&gt; v;
-}
-int main(){
-    int a = 10;
-    f(a);
-    return 0;
-}</code><br>a是一个左值，当左值传递给模板参数是右值的模板函数时，T被推断为T&amp;,也就是说T是int&amp;。那么为什么vector容器不能存引用呢？<br>答：容器的元素必须是可以分配空间的元素，而引用是在初始化的时候绑定在变量上的，而且不能让它们引用到别的对象上去。同理可得：const int类型的变量（即not-assignable的变量）都不能放在此类容器中的。</p>
-<p>reference to:<a href="https://stackoverflow.com/questions/922360/why-cant-i-make-a-vector-of-references" target="_blank" rel="noopener">discuss in SO</a><code></code></p>
+        <p>新标准库中提供的智能指针shared_ptr允许多个指针通过一个对象。它也是<span style="color: #ff0000;">模版</span>，因此我们才创建一个智能指针的时候必须要提供指针指向的类型。</p>
+<p>默认初始化的智能指针中存着一个空指针:shared_ptr&lt;string&gt; spt;就是一个指向空string的指针。<a id="more"></a></p>
+<h3 id="shared-ptr的拷贝和赋值："><a href="#shared-ptr的拷贝和赋值：" class="headerlink" title="shared_ptr的拷贝和赋值："></a>shared_ptr的拷贝和赋值：</h3><p>当进行拷贝或者赋值操作时，每个shared_ptr都会记录有多少个其他shared_ptr指向相同的对象：</p>
+<p>auto p=make_shared&lt;int&gt;(42);//p是指向值为42的int指针</p>
+<p>auto q(p);//p和q指向相同的对象，因此说这个对象有两个引用者。</p>
+<p>每个shared_ptr都有一个<span style="color: #ff0000;">关联的计数器</span>（引用计数）。无论什么时候涉及到<span style="color: #ff0000;">shared_ptr的拷贝时候，计数器都会递增</span>。当我们给shared_ptr赋新值或者是shared_ptr被销毁（离开局部作用域）计数器就会递减。当一个shared_ptr变为0的时候，就会自动释放它所指的对象。对于以上的q(p)构造q的过程，就是p的shared_ptr计数器递增1，也就是2；</p>
+<p>p = r;//给p赋值，令它指向另外一个地址，r递增指向对象的计数。递减p所指对象的计数。而p所指对象的计数值为2，递减了仍然为1，所以它指向的那个对象不会被释放。此例子可以说明：<span style="color: #ff0000;">引用计数是与对象绑定的，而不是指向该对象的某一个shared_ptr。</span></p>
+<p>验证引用计数是与对象相关的代码：</p>
+<p>&nbsp;</p>
+<pre>#include 
+#include 
+using namespace std;
 
+int main(){
+    auto p = make_shared(42);
+    auto q(p);//此时p指向的对象有2个计数值
+
+    auto r = make_shared(22);
+
+    p = r;
+
+    cout &lt;&lt; *q&lt;&lt;endl;
+
+    return 0;
+}
+</pre>
       
     </div>
     
@@ -450,6 +464,12 @@ int main(){
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/c/" rel="tag"># c++</a>
+          
+        </div>
+      
 
       
       
@@ -459,8 +479,8 @@ int main(){
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/11/e5-89-8d-e7-ab-af-e7-ac-94-e8-ae-b0-e4-b9-8b-e7-bd-91-e9-a1-b5-e5-b8-83-e5-b1-80/" rel="next" title="前端笔记之网页布局">
-                <i class="fa fa-chevron-left"></i> 前端笔记之网页布局
+              <a href="/2017/07/31/c-e6-a0-87-e5-87-86-e5-ba-93-e6-b3-9b-e5-9e-8b-e7-ae-97-e6-b3-95/" rel="next" title="c++标准库 泛型算法">
+                <i class="fa fa-chevron-left"></i> c++标准库 泛型算法
               </a>
             
           </div>
@@ -469,8 +489,8 @@ int main(){
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/31/liunx-e7-94-9f-e6-88-90ssh-e5-9c-a8github-e4-b8-ad-e9-85-8d-e7-bd-ae/" rel="prev" title="Liunx生成ssh 在github中配置">
-                Liunx生成ssh 在github中配置 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/08/04/c++-unique_ptr-and-weak_ptr/" rel="prev" title="c++动态内存中 weak_ptr和unique_ptr">
+                c++动态内存中 weak_ptr和unique_ptr <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -632,7 +652,7 @@ int main(){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么vector不能存引用？"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4E3A;&#x4EC0;&#x4E48;vector&#x4E0D;&#x80FD;&#x5B58;&#x5F15;&#x7528;&#xFF1F;" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;vector&#x4E0D;&#x80FD;&#x5B58;&#x5F15;&#x7528;&#xFF1F;"></a>&#x4E3A;&#x4EC0;&#x4E48;vector&#x4E0D;&#x80FD;&#x5B58;&#x5F15;&#x7528;&#xFF1F;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#shared-ptr的拷贝和赋值："><span class="nav-number">1.</span> <span class="nav-text"><a href="#shared-ptr&#x7684;&#x62F7;&#x8D1D;&#x548C;&#x8D4B;&#x503C;&#xFF1A;" class="headerlink" title="shared_ptr&#x7684;&#x62F7;&#x8D1D;&#x548C;&#x8D4B;&#x503C;&#xFF1A;"></a>shared_ptr&#x7684;&#x62F7;&#x8D1D;&#x548C;&#x8D4B;&#x503C;&#xFF1A;</span></a></li></ol></div>
             
 
           </div>
