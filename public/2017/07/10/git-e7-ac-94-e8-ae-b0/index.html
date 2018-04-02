@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="git," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="git学习笔记 精华，摘录自：http://www.liaoxuefeng.com创建仓库和提交初始化git仓库，用git init。会在文件夹中生成.git的文件，不要轻易动这个文件。在linux下，用ls -ah查看隐藏文件 添加文件仓库的两个步骤：  将文件添加到仓库，git add &amp;lt;file name&amp;gt; 将添加的文件提交到仓库，git commit -m “your comm">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git笔记">
+<meta property="og:url" content="http://yoursite.com/2017/07/10/git-e7-ac-94-e8-ae-b0/index.html">
+<meta property="og:site_name" content="弗卡斯的小站">
+<meta property="og:description" content="git学习笔记 精华，摘录自：http://www.liaoxuefeng.com创建仓库和提交初始化git仓库，用git init。会在文件夹中生成.git的文件，不要轻易动这个文件。在linux下，用ls -ah查看隐藏文件 添加文件仓库的两个步骤：  将文件添加到仓库，git add &amp;lt;file name&amp;gt; 将添加的文件提交到仓库，git commit -m “your comm">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-09T17:06:50.786Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git笔记">
+<meta name="twitter:description" content="git学习笔记 精华，摘录自：http://www.liaoxuefeng.com创建仓库和提交初始化git仓库，用git init。会在文件夹中生成.git的文件，不要轻易动这个文件。在linux下，用ls -ah查看隐藏文件 添加文件仓库的两个步骤：  将文件添加到仓库，git add &amp;lt;file name&amp;gt; 将添加的文件提交到仓库，git commit -m “your comm">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/10/git-e7-ac-94-e8-ae-b0/"/>
+
+
+
+
+
+  <title>git笔记 | 弗卡斯的小站</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">弗卡斯的小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/10/git-e7-ac-94-e8-ae-b0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="a1anpro">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="弗卡斯的小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">git笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-10T16:03:06+08:00">
+                2017-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/10/git-e7-ac-94-e8-ae-b0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/07/10/git-e7-ac-94-e8-ae-b0/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="git学习笔记-精华，摘录自：http-www-liaoxuefeng-com"><a href="#git学习笔记-精华，摘录自：http-www-liaoxuefeng-com" class="headerlink" title="git学习笔记 精华，摘录自：http://www.liaoxuefeng.com"></a>git学习笔记 精华，摘录自：<a href="http://www.liaoxuefeng.com" target="_blank" rel="noopener">http://www.liaoxuefeng.com</a></h1><h2 id="创建仓库和提交"><a href="#创建仓库和提交" class="headerlink" title="创建仓库和提交"></a>创建仓库和提交</h2><p>初始化git仓库，用git init。会在文件夹中生成.git的文件，不要轻易动这个文件。在linux下，用ls -ah查看隐藏文件</p>
+<p>添加文件仓库的两个步骤：</p>
+<ol>
+<li>将文件添加到仓库，git add &lt;file name&gt;</li>
+<li>将添加的文件提交到仓库，git commit -m “your comments”<a id="more"></a>
+</li>
+</ol>
+<p>git status可以查看工作区的状态。如果是文件被修改过，可以用git diff查看修改了什么内容。确认无误后可以用以上两个步骤来将文件提交到仓库中。</p>
+<p>用git log查看历史记录，这个命令可以查看从最近到最远的历史提交日志。如果内容太多可以用git log –pretty=oneline来查看一行的内容</p>
+<p>&nbsp;</p>
+<h2 id="退回版本"><a href="#退回版本" class="headerlink" title="退回版本"></a>退回版本</h2><p>HEAD指向的是当前版本，因此，git允许我们在版本的历史之间选择，用命令 git reset –hard commit_id; (commit_id通常是SHA1计算出来的一个非常大的数字，用十六进制表示）</p>
+<p>用git log可以查看提交历史，以便确定要退回到哪个版本</p>
+<p>用git reflog查看命令历史，以便确定去到哪个“未来”版本（实际上这个命令可以查看之前的所有操作记录）</p>
+<p>&nbsp;</p>
+<h2 id="暂存区和工作区的理解"><a href="#暂存区和工作区的理解" class="headerlink" title="暂存区和工作区的理解"></a>暂存区和工作区的理解</h2><p>工作区是在电脑中能够看到的目录，比如新建的learngit文件夹就是一个工作区<br>版本库是工作区下面的一个隐藏目录.git，是Git的版本库<br>版本库里面存了很多东西，其中最重要的就是stage（暂存区），还有Git为我们创建的第一个分支，master分支，以及指向<br>master分支的指针HEAD</p>
+<p>之前的git add就是吧文件修改添加到暂存区<br>然后用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支，因为我们创建git版本库时，Git自动为我们创建了唯一的master分支，所以现在git commit就是往master分支上提交更改。<br>可以简单的理解为：用户需要提交的文件统统放在暂存区，然后一次性提交到暂存区的所有修改</p>
+<p>&nbsp;</p>
+<h3 id="管理修改："><a href="#管理修改：" class="headerlink" title="管理修改："></a>管理修改：</h3><p>Git管理的是修改而不是文件。每次修改，如果不add到暂存区，就不会被commit到分支</p>
+<h3 id="撤销修改："><a href="#撤销修改：" class="headerlink" title="撤销修改："></a>撤销修改：</h3><p>git checkout – filename 命令可以丢弃工作区的修改，例如：git checkout – readme.txt把readme.txt文件在工作区的修改全部撤销：<br>一种readme.txt自修改后还没有放到暂存区中，现在撤销就会到和版本库一样的状态（git diff HEAD – readme.txt可以比较工作区的readme.txt文件和版本库里的最新版本的区别）<br>一种readme.txt已经添加到暂存区，又做了修改，现在撤回修改就回到添加到暂存区后的状态<br>总之就是让这个文件回到最近一次git commit或者git add时的状态</p>
+<p>git checkout – file命令中–很重要，没有–，就变成了“切换到另一个分支”的命令。</p>
+<p>如果修改后提交到暂存区，用git reset HEAD filename可以把暂缓区的修改撤销，重新放回到工作区（git reset命令既可以退回版本，也可以把暂存区的修改退回到工作区）</p>
+<h3 id="删除文件："><a href="#删除文件：" class="headerlink" title="删除文件："></a>删除文件：</h3><p>在linux下用rm filename删除了文件，你有两个选择：<br>一是确实要从版本库中删除该文件，就用git rm filename删除，并且git commit。<br>一是删错了，因为版本库里面还有，所以可以很轻松的把误删的文件恢复到最新版本git checkout – test.txt<br>其实git checkout是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以一键还原</p>
+<p>&nbsp;</p>
+<h2 id="添加远程库："><a href="#添加远程库：" class="headerlink" title="添加远程库："></a>添加远程库：</h2><p>通过ssh与github配对<br>在本地的learngit仓库下运行命令：git remote add origin git@github.com:a1anpro/learngit.git<br>（把账户名换成自己的账户名）<br>添加后，远程库的名字就是origin。可以用git push -u origin master 命令把本地库的所有内容(master)都推送到远程库中。<br>由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。<br>从现在起，只要本地作了提交，就可以通过命令： git push origin master</p>
+<p>## </p>
+<h2 id="从远程库克隆"><a href="#从远程库克隆" class="headerlink" title="从远程库克隆:"></a>从远程库克隆:</h2><p>在github上创建仓库gitskills<br>在本地用git clone git@github.com:a1anpro/gitskils.git就可以将远程的库克隆到本地使用<br>Git支持多种协议，包括https,但是通过ssh支持的原生的git协议速度最快</p>
+<p>&nbsp;</p>
+<h2 id="创建与合并分支："><a href="#创建与合并分支：" class="headerlink" title="创建与合并分支："></a>创建与合并分支：</h2><p>master是一条主线，创建的新分支是master的延续，如果要合并的话，直接修改指针就ok（指针涉及：HEAD,master,dev…)<br>创建分支：git checkout -b dev(相当于git branch dev 和 git checkout dev 创建分支和切换分支)<br>用git branch 命令查看当前分支<br>用git checkout “branch”可以切换分支<br>将dev分支的工作成果合并到master分支上：<br>git merge dev 这条命令用于合并指定分支到当前分支。<br>合并完成后，可以将dev分支删除：git branch -d dev</p>
+<p>#因为创建/合并/删除分支都非常快，所以Git鼓励你使用分支完成某个任务，合并后再删除分支，这和直接在master分支上工作是一样的，但是过程要安全的多</p>
+<p>## </p>
+<h2 id="解决冲突："><a href="#解决冲突：" class="headerlink" title="解决冲突："></a>解决冲突：</h2><p>当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。<br>用git log –graph –pretty=oneline –abbrev-commit命令可以看到分支合并图。</p>
+<p>&nbsp;</p>
+<h2 id="分支管理策略："><a href="#分支管理策略：" class="headerlink" title="分支管理策略："></a>分支管理策略：</h2><p>直接用git merge dev合并分支，使用的是Fast forward模式，这种模式下，删除分支后，会丢掉分支信息<br>如果要强制禁用Fast forward模式，Git就会在merge时生成一个commit，这样在分支历史上就可以看到分支信息</p>
+<p>关闭Fast forward模式：git merge –no-ff -m ‘comments’ dev<br>这次要合并并创建一个新的commit，所以加上了-m参数<br>Git分支十分强大，在团队开发中应该充分应用。</p>
+<p>合并分支时，加上–no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。</p>
+<h2 id="bug分支："><a href="#bug分支：" class="headerlink" title="bug分支："></a>bug分支：</h2><p>当接到一个修复代号为101的bug任务时，要创建另一个分支来修复它，但是当前正在dev进行工作还没有提交<br>现在用git stash将当前的工作现场存储起来，等以后恢复现场后继续工作</p>
+<p>等到bug修复完成后，切换到dev分支，用git stash list来查看之前的工作现场<br>Git把stash内容存在某个地方了，需要恢复一下：<br>方法一：git stash apply恢复，这样恢复后，stash内容并不删除，需要用git stash drop来删除<br>方法二：用git stash pop，恢复的同时把stash内容也删掉</p>
+<p>可以多次stash来保存现场，恢复的时候先用git stash list 查看，然后恢复指定的stash：<br>git stash apply stash@{0}</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续分享~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="a1anpro 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="a1anpro 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/03/c++-primary-variables/" rel="next" title="c++基础 变量和基本类型">
+                <i class="fa fa-chevron-left"></i> c++基础 变量和基本类型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/11/resolve ubuntu cannot get lock/" rel="prev" title="解决ubuntu E: 无法获得锁 /var/lib/apt/lists/lock - open (11: 资源暂时不可用)">
+                解决ubuntu E: 无法获得锁 /var/lib/apt/lists/lock - open (11: 资源暂时不可用) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="a1anpro" />
+            
+              <p class="site-author-name" itemprop="name">a1anpro</p>
+              <p class="site-description motion-element" itemprop="description">为了星辰和大海</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/a1anpro" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:alanyanhui@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.douban.com/people/53248239" target="_blank" title="douban">
+                    
+                      <i class="fa fa-fw fa-globe"></i>douban</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#git学习笔记-精华，摘录自：http-www-liaoxuefeng-com"><span class="nav-number">1.</span> <span class="nav-text"><a href="#git&#x5B66;&#x4E60;&#x7B14;&#x8BB0;-&#x7CBE;&#x534E;&#xFF0C;&#x6458;&#x5F55;&#x81EA;&#xFF1A;http-www-liaoxuefeng-com" class="headerlink" title="git&#x5B66;&#x4E60;&#x7B14;&#x8BB0; &#x7CBE;&#x534E;&#xFF0C;&#x6458;&#x5F55;&#x81EA;&#xFF1A;http://www.liaoxuefeng.com"></a>git&#x5B66;&#x4E60;&#x7B14;&#x8BB0; &#x7CBE;&#x534E;&#xFF0C;&#x6458;&#x5F55;&#x81EA;&#xFF1A;<a href="http://www.liaoxuefeng.com" target="_blank" rel="noopener">http://www.liaoxuefeng.com</a></span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建仓库和提交"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x521B;&#x5EFA;&#x4ED3;&#x5E93;&#x548C;&#x63D0;&#x4EA4;" class="headerlink" title="&#x521B;&#x5EFA;&#x4ED3;&#x5E93;&#x548C;&#x63D0;&#x4EA4;"></a>&#x521B;&#x5EFA;&#x4ED3;&#x5E93;&#x548C;&#x63D0;&#x4EA4;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#退回版本"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#&#x9000;&#x56DE;&#x7248;&#x672C;" class="headerlink" title="&#x9000;&#x56DE;&#x7248;&#x672C;"></a>&#x9000;&#x56DE;&#x7248;&#x672C;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#暂存区和工作区的理解"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#&#x6682;&#x5B58;&#x533A;&#x548C;&#x5DE5;&#x4F5C;&#x533A;&#x7684;&#x7406;&#x89E3;" class="headerlink" title="&#x6682;&#x5B58;&#x533A;&#x548C;&#x5DE5;&#x4F5C;&#x533A;&#x7684;&#x7406;&#x89E3;"></a>&#x6682;&#x5B58;&#x533A;&#x548C;&#x5DE5;&#x4F5C;&#x533A;&#x7684;&#x7406;&#x89E3;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#管理修改："><span class="nav-number">1.3.1.</span> <span class="nav-text"><a href="#&#x7BA1;&#x7406;&#x4FEE;&#x6539;&#xFF1A;" class="headerlink" title="&#x7BA1;&#x7406;&#x4FEE;&#x6539;&#xFF1A;"></a>&#x7BA1;&#x7406;&#x4FEE;&#x6539;&#xFF1A;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#撤销修改："><span class="nav-number">1.3.2.</span> <span class="nav-text"><a href="#&#x64A4;&#x9500;&#x4FEE;&#x6539;&#xFF1A;" class="headerlink" title="&#x64A4;&#x9500;&#x4FEE;&#x6539;&#xFF1A;"></a>&#x64A4;&#x9500;&#x4FEE;&#x6539;&#xFF1A;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除文件："><span class="nav-number">1.3.3.</span> <span class="nav-text"><a href="#&#x5220;&#x9664;&#x6587;&#x4EF6;&#xFF1A;" class="headerlink" title="&#x5220;&#x9664;&#x6587;&#x4EF6;&#xFF1A;"></a>&#x5220;&#x9664;&#x6587;&#x4EF6;&#xFF1A;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加远程库："><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#&#x6DFB;&#x52A0;&#x8FDC;&#x7A0B;&#x5E93;&#xFF1A;" class="headerlink" title="&#x6DFB;&#x52A0;&#x8FDC;&#x7A0B;&#x5E93;&#xFF1A;"></a>&#x6DFB;&#x52A0;&#x8FDC;&#x7A0B;&#x5E93;&#xFF1A;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从远程库克隆"><span class="nav-number">1.5.</span> <span class="nav-text"><a href="#&#x4ECE;&#x8FDC;&#x7A0B;&#x5E93;&#x514B;&#x9686;" class="headerlink" title="&#x4ECE;&#x8FDC;&#x7A0B;&#x5E93;&#x514B;&#x9686;:"></a>&#x4ECE;&#x8FDC;&#x7A0B;&#x5E93;&#x514B;&#x9686;:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建与合并分支："><span class="nav-number">1.6.</span> <span class="nav-text"><a href="#&#x521B;&#x5EFA;&#x4E0E;&#x5408;&#x5E76;&#x5206;&#x652F;&#xFF1A;" class="headerlink" title="&#x521B;&#x5EFA;&#x4E0E;&#x5408;&#x5E76;&#x5206;&#x652F;&#xFF1A;"></a>&#x521B;&#x5EFA;&#x4E0E;&#x5408;&#x5E76;&#x5206;&#x652F;&#xFF1A;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决冲突："><span class="nav-number">1.7.</span> <span class="nav-text"><a href="#&#x89E3;&#x51B3;&#x51B2;&#x7A81;&#xFF1A;" class="headerlink" title="&#x89E3;&#x51B3;&#x51B2;&#x7A81;&#xFF1A;"></a>&#x89E3;&#x51B3;&#x51B2;&#x7A81;&#xFF1A;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支管理策略："><span class="nav-number">1.8.</span> <span class="nav-text"><a href="#&#x5206;&#x652F;&#x7BA1;&#x7406;&#x7B56;&#x7565;&#xFF1A;" class="headerlink" title="&#x5206;&#x652F;&#x7BA1;&#x7406;&#x7B56;&#x7565;&#xFF1A;"></a>&#x5206;&#x652F;&#x7BA1;&#x7406;&#x7B56;&#x7565;&#xFF1A;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bug分支："><span class="nav-number">1.9.</span> <span class="nav-text"><a href="#bug&#x5206;&#x652F;&#xFF1A;" class="headerlink" title="bug&#x5206;&#x652F;&#xFF1A;"></a>bug&#x5206;&#x652F;&#xFF1A;</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">弗卡斯</span>
+
+  
+</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共33.0k字</span>
+</div>
+<!--
+</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+-->
+
+
+<!--
+
+  <span class="post-meta-divider">|</span>
+
+-->
+
+<br>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'J9lVBg7bpt7zV1Ibqnu5uTxY-gzGzoHsz',
+        appKey: 'szURUNWm9A82HqH9Bxoiae8k',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

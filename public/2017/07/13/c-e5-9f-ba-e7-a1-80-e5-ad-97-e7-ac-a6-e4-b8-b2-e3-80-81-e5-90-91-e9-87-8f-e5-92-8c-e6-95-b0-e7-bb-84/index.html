@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="c++," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="遗留问题：范围for循环迭代指针 作用域操作符（::）的含义：编译器从操作符左侧所示的作用域中寻找右侧那个名字。因此std::cin是要使用命名空间std中的名字cin string s; cin &amp;gt;&amp;gt; s; 在执行读取操作时，string对象会自动忽略开头的空白，并从第一个真正的字符开始读，直到碰到下一个空白为止； 要想得到的字符串中保留输入时的空白符，应该用getline。和输入运">
+<meta name="keywords" content="c++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c++基础 字符串、向量和数组">
+<meta property="og:url" content="http://yoursite.com/2017/07/13/c-e5-9f-ba-e7-a1-80-e5-ad-97-e7-ac-a6-e4-b8-b2-e3-80-81-e5-90-91-e9-87-8f-e5-92-8c-e6-95-b0-e7-bb-84/index.html">
+<meta property="og:site_name" content="弗卡斯的小站">
+<meta property="og:description" content="遗留问题：范围for循环迭代指针 作用域操作符（::）的含义：编译器从操作符左侧所示的作用域中寻找右侧那个名字。因此std::cin是要使用命名空间std中的名字cin string s; cin &amp;gt;&amp;gt; s; 在执行读取操作时，string对象会自动忽略开头的空白，并从第一个真正的字符开始读，直到碰到下一个空白为止； 要想得到的字符串中保留输入时的空白符，应该用getline。和输入运">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-09T17:06:50.794Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="c++基础 字符串、向量和数组">
+<meta name="twitter:description" content="遗留问题：范围for循环迭代指针 作用域操作符（::）的含义：编译器从操作符左侧所示的作用域中寻找右侧那个名字。因此std::cin是要使用命名空间std中的名字cin string s; cin &amp;gt;&amp;gt; s; 在执行读取操作时，string对象会自动忽略开头的空白，并从第一个真正的字符开始读，直到碰到下一个空白为止； 要想得到的字符串中保留输入时的空白符，应该用getline。和输入运">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/13/c-e5-9f-ba-e7-a1-80-e5-ad-97-e7-ac-a6-e4-b8-b2-e3-80-81-e5-90-91-e9-87-8f-e5-92-8c-e6-95-b0-e7-bb-84/"/>
+
+
+
+
+
+  <title>c++基础 字符串、向量和数组 | 弗卡斯的小站</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">弗卡斯的小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/13/c-e5-9f-ba-e7-a1-80-e5-ad-97-e7-ac-a6-e4-b8-b2-e3-80-81-e5-90-91-e9-87-8f-e5-92-8c-e6-95-b0-e7-bb-84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="a1anpro">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="弗卡斯的小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">c++基础 字符串、向量和数组</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-13T13:07:52+08:00">
+                2017-07-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c-学习/" itemprop="url" rel="index">
+                    <span itemprop="name">c++学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/13/c-e5-9f-ba-e7-a1-80-e5-ad-97-e7-ac-a6-e4-b8-b2-e3-80-81-e5-90-91-e9-87-8f-e5-92-8c-e6-95-b0-e7-bb-84/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/07/13/c-e5-9f-ba-e7-a1-80-e5-ad-97-e7-ac-a6-e4-b8-b2-e3-80-81-e5-90-91-e9-87-8f-e5-92-8c-e6-95-b0-e7-bb-84/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><del><em><strong>遗留问题：范围for循环迭代指针</strong></em></del></p>
+<p>作用域操作符（::）的含义：编译器从操作符左侧所示的作用域中寻找右侧那个名字。因此std::cin是要使用命名空间std中的名字cin</p>
+<p>string s;</p>
+<p>cin &gt;&gt; s;</p>
+<p>在执行读取操作时，string对象会自动忽略开头的空白，并从第一个真正的字符开始读，直到碰到下一个空白为止；</p>
+<p>要想得到的字符串中保留输入时的空白符，应该用getline。和输入运算符一样，getline也会返回它的流参数。触发getline函数返回的那个换行符实际上被丢弃了，得到的string对象中不包含该换行符<a id="more"></a></p>
+<p>string::size_type类，string类以及其他大多数标准库类型都定义了几种配套的类型。这些配套类型都体现了标准库类型和机器无关的特性。在具体使用的时候，通过作用域操作符来表明名字size_type是在类string中定义的。</p>
+<p>尽管string::size_type的类型有点神秘，但是在c++11标准中，允许编译器通过auto或者decltype来推断变量的类型。</p>
+<p><span style="color: #ff0000;"><em><strong>tips：</strong></em></span>如果一条表达式中已经有了size()函数就不要再使用int类型了，这样可以避免混用int和unsigned引发的问题了</p>
+<h3 id="字面值和string对象相加："><a href="#字面值和string对象相加：" class="headerlink" title="字面值和string对象相加："></a>字面值和string对象相加：</h3><p>c++中字符串字面值并不是标准库类型string的对象。<strong>切记：字符串字面值和string是不同的类型。</strong></p>
+<p><strong><em>标准库允许把字符字面值和字符串字面值转换成string。当把string对象和字符字面值或者字符串字面值混在一条语句中使用时，必须确保每个加法运算符的两侧的运算对象至少有一个是string</em></strong></p>
+<p>&nbsp;</p>
+<p>下标运算符[]接受的输入参数是string::size_type类型的值，这个参数表示要访问的字符的位置，<span style="color: #ff0000;">返回值是该位置上字符的引用</span></p>
+<p><em>#include &lt;iostream&gt;</em><br><em>using namespace std;</em><br><em>#include &lt;cctype&gt;</em><br><em>int main(){</em><br><em> string s = “hello,world”;</em></p>
+<p><em> for (decltype(s.size()) index = 0; index != s.size() &amp;&amp; !ispunct(s[index]); ++index){</em><br><em> s[index] = toupper(s[index]);</em><br><em> }</em><br><em> //&amp;&amp;运算符有屏蔽作用，如果&amp;&amp;前是真才会看&amp;&amp;后的逻辑判断，也就是说只有index在范围内，才会检查s[index] </em><br><em> cout &lt;&lt; s&lt;&lt;endl;</em><br><em> return 0;</em><br><em>}</em></p>
+<p>_<strong><span style="color: #ff0000;">tips：</span></strong>_c++标准库并不要求标准库检查下标是否合法，所以一旦使用了一个超出范围的下标，就会产生不可预估的后果。那么在使用前用string::size_type的index在size()范围内来保证下标的合法性！！</p>
+<p>&nbsp;</p>
+<p><em><strong><span style="color: #ff0000;">tips:</span></strong></em>在类内初始值的初始化时候，只能用花括号或者放在等号右边。如：struct Node{int x=0; int y{0}; };</p>
+<p>c++语言提供了几种不同的初始化方式，在大多数情况下这些初始化方式可以相互等价地使用。但是有几个例外情况：</p>
+<ol>
+<li>使用拷贝初始化的时候（用=号的时候），只能提供一个初始值</li>
+<li>提供的是一个类内初始化，则只能用花括号｛｝和拷贝初始化（=）</li>
+<li>如果提供的是初始元素值的列表，则只能把初始值都放在花括号里进行列表初始化，这不能放在花括号里。<br>泛型编程：只有string和vector等一些标准库类型有下标运算符，而并非全都如此。与之类似，所有的标准库容器的迭代器都定义了==和！=，但是它们大多数都没有定义&lt;运算符，因此推荐使用==和!=运算符，这样就不用管是哪种容器类型了。</li>
+</ol>
+<p>&nbsp;</p>
+<p>虽然vector对象可以动态地增长，但是也会有一些副作用。已知的一个限制是不能在范围for循环中向vector对象添加元素，比如push_back都会使该vector对象的迭代器失效。</p>
+<p>迭代器的加减：只要两个迭代器指向的是同一个容器中的元素或者尾元素的下一位置，就能将其相减，所得结果是两个迭代器的距离。所谓的距离就是右侧的迭代器向前移动多少个单位就能追上左侧的迭代器，其类型名是difference_type,因为这个距离可负可正，所以difference_type是带符号型的；</p>
+<p>&nbsp;</p>
+<p><em><strong><span style="color: #ff0000;">字符数组的特殊性：</span></strong></em>字符数组有一种额外的初始化形式，可以用字符串字面值来对此类数组初始化。当使用这种方式的时候，一定要注意字符串字面值的结尾处还有一个空字符，这个空字符也会像字符串其他字符一样被拷贝到字符数组中去。char a[6]=”hello!”，就是错误的，因为hello!是6个字符，还有一个’\0’会被填入，却因为数组开小了 失败。</p>
+<p>&nbsp;</p>
+<p><em><strong><span style="color: #ff0000;">初始化与不初始化：</span></strong></em></p>
+<p>例子:</p>
+<p>unsigned scores[11];//没有初始化，scores中的值都是由它们所在的位置来确定，所以都是垃圾值。不初始化可能会造成不可估量的错误，往往这种错误也不好找</p>
+<p>unsigned grade[11]={};//用花括号初始化，grade内元素的值都是0；</p>
+<p>&nbsp;</p>
+<p><strong><em><span style="color: #ff6600;">数组与指针的关系很紧密，但是又不可以等价：</span></em></strong></p>
+<p>#include &lt;iostream&gt;<br>using namespace std;</p>
+<p>int main(){<br>int ia[] = {1,2,3,4,5,6};<br>decltype(ia) ia1;//经过decltype(array)得到的是数组（另外开辟的内存空间）<br>cout &lt;&lt; sizeof(ia)&lt;&lt;endl;//24<br>cout &lt;&lt; sizeof(ia1)&lt;&lt;endl;//24</p>
+<p>auto ia2 = ia;<br>cout &lt;&lt; *ia2;//经过auto得到的是数组ia的首地址。<br>return 0;<br>}</p>
+<p><span style="color: #ff6600;">我的理解是：数组是开辟的一块内存，而指针只是存某一单位的内存地址的对象。auto将数组翻译成指针，并且这个指针存的是数组的首地址。而decltype将数组仍然翻译成数组，也就另外开辟内存空间了的。总的来说，decltype比auto更具体</span></p>
+<p>&nbsp;</p>
+<p><span style="color: #ff0000;"><em><strong>下标和指针：</strong></em></span></p>
+<p>很多情况下使用数组名字其实用的是一个指向数组首元素的指针。当对数组使用下标运算符的时候，编译器会自动执行上述转换操作，比如：</p>
+<p>int a[10]={};</p>
+<p>int b = a[2];//&lt;=&gt;*(a+2)，a是数组的首地址</p>
+<p>只要指针指向的是数组中的元素，都可以执行下标运算：</p>
+<p>int *p=&amp;ia[2];</p>
+<p>int j = p[1];//等价于ia[3];</p>
+<p>int k = p[-2];//等价于ia[0];</p>
+<p>标准库类型限定使用的下标必须是无符号类型，而内置的下标运算无此要求。内置的下标运算符可以处理负值。</p>
+<p>&nbsp;</p>
+<p><em><strong><span style="color: #ff0000;">使用范围for循环处理多维数组需要注意的点：</span></strong></em></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><pre>#include<br>using namespace std;</pre></p>
+<p>int main(){<br>int ia[3][4]={0};<br>size_t cnt = 0;</p>
+<p>for (auto &amp;row : ia){<br>for (auto &amp;col : row){<br>col = cnt;<br>cnt++;<br>}<br>}</p>
+<p>for (const auto &amp;row : ia){<br>for (auto col : row){<br>cout &lt;&lt; col &lt;&lt; endl;<br>}<br>}<br>return 0;<br>}</p>
+<p><br>上面的例子中，因为要改变数组的值，所以要选用引用类型作为循环控制变量。但是其实有个更深层次的原因促使我们这么多：在第二个嵌套for循环中，没有任何写操作，只有读操作，可是我们还是将外层循环的控制变量声明成了引用类型。<span style="color: #ff0000;">这是为了避免数组自动被转换成指针类型。</span></p>
+<p>举个栗子：</p>
+<p>for(auto row:ia){</p>
+<p>for(auto rol:row){}}</p>
+<p>将无法通过编译。因为像之前一样第一个循环遍历ia的所有元素，这些元素实际上是大小为4的数组。因为row不是引用类型，所以编译器初始化row时会自动将这些数组形式的元素转换成指向该数组内首元素的指针。这样得到的row的类型就是int*，显然内层循环就不合法。</p>
+<p><span style="color: #ff0000;"><em><strong>指针数组和数组指针的辨别：</strong></em></span></p>
+<p>int *ip[4];//整型指针数组</p>
+<p>int (*ip)[4];//指向含有4个整数的数组</p>
+<p>&nbsp;</p>
+<p>c++11标准中通过auto和decltype就能尽可能地避免在数组前面加上一个指针类型了：</p>
+<p>//输出ia中每个元素的值，每个内层数组各占一行</p>
+<p>//版本1：</p>
+<p>int ia[3][4]={0};</p>
+<p>for(auto p=ia; p!=ia+3; ++p){</p>
+<p>for (auto q = <em>p; q != </em>p + 4; ++q){</p>
+<p>cout &lt;&lt; *q &lt;&lt;endl;}</p>
+<p>cout &lt;&lt; endl;</p>
+<p>}</p>
+<p>//版本2:这个版本中，循环终止条件由end函数负责判断。虽然我们可以推断出p是指向含有4个整数的数组的指针，q是指向整数的指针，但是使用auto我们就不用关系到底是什么类型了</p>
+<p>for (auto p = begin(ia); p != end(ia); ++p){</p>
+<p>for (auto q = begin(<em>p); q != end(</em>p); ++q){</p>
+<p>cout &lt;&lt; *q &lt;&lt;endl;}</p>
+<p>cout &lt;&lt; endl;</p>
+<p>}</p>
+<p>//版本3：使用类型别名来简化;程序将类型“4个整数组成的数组”命名为int_array</p>
+<p>using int_array = int[4];//typedef int int_array[4];</p>
+<p>for (int_array *p = ia; p != ia + 3; ++p){</p>
+<p>for (int <em>q = </em>p; q != *p + 4; ++q){</p>
+<p>cout &lt;&lt; *q &lt;&lt;endl;}</p>
+<p>cout &lt;&lt;endl;</p>
+<p>}</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续分享~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="a1anpro 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="a1anpro 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c/" rel="tag"># c++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/11/ubuntu-e7-94-a8shadowsocks-e7-a7-91-e5-ad-a6-e4-b8-8a-e7-bd-91-e5-ae-8c-e5-85-a8-e6-95-99-e7-a8-8b/" rel="next" title="ubuntu用shadowsocks科学上网完全教程">
+                <i class="fa fa-chevron-left"></i> ubuntu用shadowsocks科学上网完全教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/15/c-e5-9f-ba-e7-a1-80-e8-a1-a8-e8-be-be-e5-bc-8f/" rel="prev" title="c++基础 表达式">
+                c++基础 表达式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="a1anpro" />
+            
+              <p class="site-author-name" itemprop="name">a1anpro</p>
+              <p class="site-description motion-element" itemprop="description">为了星辰和大海</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/a1anpro" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:alanyanhui@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.douban.com/people/53248239" target="_blank" title="douban">
+                    
+                      <i class="fa fa-fw fa-globe"></i>douban</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#字面值和string对象相加："><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x5B57;&#x9762;&#x503C;&#x548C;string&#x5BF9;&#x8C61;&#x76F8;&#x52A0;&#xFF1A;" class="headerlink" title="&#x5B57;&#x9762;&#x503C;&#x548C;string&#x5BF9;&#x8C61;&#x76F8;&#x52A0;&#xFF1A;"></a>&#x5B57;&#x9762;&#x503C;&#x548C;string&#x5BF9;&#x8C61;&#x76F8;&#x52A0;&#xFF1A;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">弗卡斯</span>
+
+  
+</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共33.0k字</span>
+</div>
+<!--
+</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+-->
+
+
+<!--
+
+  <span class="post-meta-divider">|</span>
+
+-->
+
+<br>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'J9lVBg7bpt7zV1Ibqnu5uTxY-gzGzoHsz',
+        appKey: 'szURUNWm9A82HqH9Bxoiae8k',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

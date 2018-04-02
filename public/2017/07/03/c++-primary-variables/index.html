@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="c++," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="类型篇：一个char的空间应确保可以存放机器基本字符集中任意字符对应的数字值。也就是说，一个char的大小和一个机器字节一样 c++语言规定，一个int至少和一个short一样大，一个long至少和一个int一样大，一个long long 至少和一个long一样大。 在算术表达式中不要使用char和bool，只有在存放字符或者布尔值时才使用它们。因为char在有些机器上是有符号的有些是无符号的，所">
+<meta name="keywords" content="c++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c++基础 变量和基本类型">
+<meta property="og:url" content="http://yoursite.com/2017/07/03/c++-primary-variables/index.html">
+<meta property="og:site_name" content="弗卡斯的小站">
+<meta property="og:description" content="类型篇：一个char的空间应确保可以存放机器基本字符集中任意字符对应的数字值。也就是说，一个char的大小和一个机器字节一样 c++语言规定，一个int至少和一个short一样大，一个long至少和一个int一样大，一个long long 至少和一个long一样大。 在算术表达式中不要使用char和bool，只有在存放字符或者布尔值时才使用它们。因为char在有些机器上是有符号的有些是无符号的，所">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-09T17:06:50.794Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="c++基础 变量和基本类型">
+<meta name="twitter:description" content="类型篇：一个char的空间应确保可以存放机器基本字符集中任意字符对应的数字值。也就是说，一个char的大小和一个机器字节一样 c++语言规定，一个int至少和一个short一样大，一个long至少和一个int一样大，一个long long 至少和一个long一样大。 在算术表达式中不要使用char和bool，只有在存放字符或者布尔值时才使用它们。因为char在有些机器上是有符号的有些是无符号的，所">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/03/c++-primary-variables/"/>
+
+
+
+
+
+  <title>c++基础 变量和基本类型 | 弗卡斯的小站</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">弗卡斯的小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/03/c++-primary-variables/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="a1anpro">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="弗卡斯的小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">c++基础 变量和基本类型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-03T21:59:48+08:00">
+                2017-07-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c-学习/" itemprop="url" rel="index">
+                    <span itemprop="name">c++学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/03/c++-primary-variables/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/07/03/c++-primary-variables/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="类型篇："><a href="#类型篇：" class="headerlink" title="类型篇："></a>类型篇：</h1><p>一个char的空间应确保可以存放机器基本字符集中任意字符对应的数字值。也就是说，一个char的大小和一个机器字节一样</p>
+<p>c++语言规定，一个int至少和一个short一样大，一个long至少和一个int一样大，一个long long 至少和一个long一样大。</p>
+<p>在算术表达式中不要使用char和bool，只有在存放字符或者布尔值时才使用它们。因为char在有些机器上是有符号的有些是无符号的，所以用char运算特别容易出问题。</p>
+<p>当一个算术表达式中既有无符号数又有int 值时，那个int值会自动转换成无符号数，把int转换成无符号数的过程和直接把int值赋值给无符号数的过程一样。<a id="more"></a><br>例如：</p>
+<pre>unsigned int u = 10;
+
+int i = -42;
+
+cout << i + i << endl;//输出-82，没问题
+
+cout << i +u << endl;//如果int是32位，输出4294967264.把负数转换成无符号数的过程类似于直接给无符号数赋一个负值，结果等于这个负数+无符号数的模
+
+</pre>
+
+<h3 id="对常量的引用："><a href="#对常量的引用：" class="headerlink" title="对常量的引用："></a>对常量的引用：</h3><p>引用的类型必须与其所引用的对象的类型一致，但是有两个例外：</p>
+<ol>
+<li><p>在初始化常量引用时允许用任意表达式作为初始值，只要该表达式的结果可以转换成引用的类型即可：尤其，允许为一个常量引用绑定非常量的对象、字面值，甚至一般表达式</p>
+<ul>
+<li>int i = 42;</li>
+<li>const int &amp;r1 = i;</li>
+<li>const int &amp;r2 = 10;</li>
+<li>const int &amp;r3 = i * 2;<br>必须认识到，常量引用仅对引用可参与的操作做出了限定，对于引用的对象本身是不是常量未作限定。因为对象也可能是个非常量，所以允许通过其他路径改变它的值。</li>
+</ul>
+</li>
+</ol>
+<p><em><span style="color: #ff0000;"><strong>tips：</strong></span>所谓的指向常量的指针和引用，不过是指针和引用“自以为是，一厢情愿”罢了，它们觉得自己指向或者绑定了常量，就自觉的不去改变它们，而干涉不了其他行为会不会改变它们了。</em></p>
+<h3 id="辨析：指向常量的指针-和-常量指针"><a href="#辨析：指向常量的指针-和-常量指针" class="headerlink" title="辨析：指向常量的指针 和 常量指针"></a>辨析：指向常量的指针 和 常量指针</h3><p><strong>指向常量的指针：</strong>不能用于改变其所指对象的值，要想存放常量对象的地址，只能使用指向常量的指针：</p>
+<p>const double pi = 3.14;</p>
+<p>const double *ptr = &amp;pi;</p>
+<p><em><strong><span style="color: #ff0000;">tip:</span></strong></em>指针的类型必须与其所指的对象类型一致，但是有两个例外：</p>
+<p>允许令一个指向常量的指针指向一个非常量的对象：double d1 = 32; const double *ptr1 = &amp;d1;//但是不能通过ptr1来修改d1的值</p>
+<p><strong>常量指针：</strong>指针是对象而引用不是，所以就像其他对象类型一样，允许把指针本身定为常量。常量指针必须初始化，并且一旦初始化之后，则它的值（存放在指针中的那个地址）就不能再改变，把*放在const前面 说明指针是一个常量:</p>
+<p>int num = 10;</p>
+<p>int *const cptr = &amp;num;//cptr指向num，并且cptr的指向不能改变了</p>
+<p><em><strong><span style="color: #ff0000;">tip:</span></strong></em> 要弄清声明的含义最好从右往左阅读：例如：const int <em>const ptr = &amp;cnt; 离标识符ptr最近的是const,说明ptr是常量对象，对象的类型由其他类型说明符确定：下一个符号是</em>，说明ptr是一个常量指针，接下来是int说明了常量指针类型是int，最后的const说明了是指向常量的int类型的常量指针，也就是说ptr既不能改变cnt的值，也不能指向其他对象</p>
+<h3 id="顶层const与底层const：（以前一直没有想通的问题）"><a href="#顶层const与底层const：（以前一直没有想通的问题）" class="headerlink" title="顶层const与底层const：（以前一直没有想通的问题）"></a>顶层const与底层const：（以前一直没有想通的问题）</h3><p>指针本身是一个对象，它又可以指向另一个对象。因此，指针本身是不是常量以及指针所指的是不是一个常量就是两个相互独立的问题。用名词 <strong><em>顶层const表示指针本身是一个常量，底层const表示指针所指的对象是一个常量。</em></strong></p>
+<p>更一般的：顶层const可以表示任意的对象是常量，底层const则只与指针和引用等复合类型的基本类型部分有关（因为只有他们是有指向或者绑定的对象的）</p>
+<p>比较特殊的是：指针类型既可以是顶层const又可以是底层const。</p>
+<p>在执行拷贝操作时，常量是顶层还是底层的区别明显：顶层const基本不受影响。而对于底层const，拷入拷出的对象必须具有相同的底层const资格（都要是底层，如果即是底层又是顶层，则忽略掉顶层），或者两个对象的数据类型可以转换。一般来说，非常量可以转成常量，反之则不行。</p>
+<p>&nbsp;</p>
+<h3 id="auto类型说明符"><a href="#auto类型说明符" class="headerlink" title="auto类型说明符"></a>auto类型说明符</h3><p>c++11新标准引入了auto类型说明符，用它能够让编译器替我们去分析表达式所属的类型。auto让编译器通过初始值来推算变量的类型，所以auto定义的变量必须要有初始值：auto item = val1 + val2;</p>
+<p>使用auto也能在一条语句中声明多个变量。因为一条声明语句只能有一个基本类型，所以该语句中所有变量的初始基本数据类型都必须一样：</p>
+<p>auto siz= 10, pi = 3.14;//错误，siz和pi的类型不一样</p>
+<p>&nbsp;</p>
+<p>关于auto的应用：</p>
+<pre><span style="color: #ff0000;">**_tips：_**</span>auto一般会忽略掉顶层的const，同时底层const则会保留下来。默认绑定底层const（p62疑点）
+#include 
+using namespace std;
+
+int main(){
+    int i = 0, &r = i;//r是int类型的引用，绑定i
+    auto a = r;//a是一个整数，r是i的别名，而i是int
+
+    const int ci = i, &cr = ci;//ci是一个int常量，cr是常量引用，绑定的是ci
+    auto b = ci;//ci是顶层const被忽略掉，所以b是int类型的普通变量
+    auto c = cr;//c是一个整数，cr本身是ci，而ci是顶层const
+    auto d = &i;//i是整数，&i是取地址，所以d是指向int的指针（整型的地址就是指向整数的指针）
+    auto e = &ci;//e是指向整数常量的指针（ci对常量取地址是一种底层const）
+
+    const auto f = ci;//f是const类型的整数
+    auto &g = ci;//g是对整数常量的引用，绑定到ci
+    const auto &j = 42;//可以为常量引用直接绑定字面值
+
+    a = 42;
+    b = 42;
+    c = 42;
+    *d = 42;
+    e = &ci;//e是指向整数常量的指针 
+
+    return 0;
+} 
+</pre>
+
+<h3 id="decltype和引用："><a href="#decltype和引用：" class="headerlink" title="decltype和引用："></a>decltype和引用：</h3><p>int i = 42, *p = &amp;i, &amp;r = i;</p>
+<p>decltype(r+0) b;//加法的结果是int，所以b是一个未初始化的int</p>
+<p>decltype(*p) c;//错误，c是int&amp; ,而未初始化</p>
+<p>r是一个引用，decltype(r)的结果是引用类型。如果想让结果类型是r所指的类型，可以把r作为表达式的一部分，如r+0，显然这个表达式的结果将是一个具体的值而非一个引用。</p>
+<p>另一方面，如果表达式的内容是解引用操作，则decltype将得到引用类型。解引用指针可以得到指针所指的对象，而且还能给这个对象赋值。因此,decltype(*p)的结果类型就是int&amp;,而非int</p>
+<p>decltype的结果类型与表达式形式密切相关。不加括号，得到的结果就是该变量的类型；如果给变量加一层或者多层括号，就会把它当作表达式。</p>
+<p><span style="color: #ff0000;"><em><strong>tips:</strong></em></span>decltype((variable))结果永远是引用，而decltype(variable)只有当variable本身就是一个引用的时候才是引用</p>
+<p>&nbsp;</p>
+<p>auto和decltype区别</p>
+<p>#include <iostream>;<br>using namespace std;</iostream></p>
+<p>int global{};<br>int&amp; foo(){<br>return global;<br>}</p>
+<p>int main(){<br>decltype(foo()) a = foo();//a is int&amp;;<br>auto b = foo();//b is int<br>b = 2;</p>
+<p>cout &lt;&lt; “a:” &lt;&lt; a &lt;&lt;endl;<br>cout &lt;&lt; “b:” &lt;&lt; b &lt;&lt;endl;</p>
+<p>cout &lt;&lt; “——————-“&lt;&lt;endl;</p>
+<p>decltype(foo()) c = foo();//c is int&amp;.<br>c = 10;</p>
+<p>cout &lt;&lt; “a:” &lt;&lt; a &lt;&lt;endl;<br>cout &lt;&lt; “b:” &lt;&lt; b &lt;&lt;endl;<br>cout &lt;&lt; “c:” &lt;&lt; c &lt;&lt;endl;</p>
+<p>cout &lt;&lt; “global:” &lt;&lt; global &lt;&lt; endl;//c引用了foo()返回的global</p>
+<p>return 0;<br>}</p>
+<p>7/13更新：一个重要的点： 设置一个类型为auto的引用时，初始值中的顶层常量属性依然保留（而不是丢弃顶层const）。比如：</p>
+<p>const int ci = 10;</p>
+<p>auto &amp;a = ci;//a这个时候就没有丢弃ci的顶层属性，所以a的类型是const int &amp;a,绑定到ci</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续分享~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="a1anpro 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="a1anpro 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c/" rel="tag"># c++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/30/python regular problems/" rel="next" title="关于python正则表达式处理的小问题">
+                <i class="fa fa-chevron-left"></i> 关于python正则表达式处理的小问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/10/git-e7-ac-94-e8-ae-b0/" rel="prev" title="git笔记">
+                git笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="a1anpro" />
+            
+              <p class="site-author-name" itemprop="name">a1anpro</p>
+              <p class="site-description motion-element" itemprop="description">为了星辰和大海</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/a1anpro" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:alanyanhui@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.douban.com/people/53248239" target="_blank" title="douban">
+                    
+                      <i class="fa fa-fw fa-globe"></i>douban</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#类型篇："><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x7C7B;&#x578B;&#x7BC7;&#xFF1A;" class="headerlink" title="&#x7C7B;&#x578B;&#x7BC7;&#xFF1A;"></a>&#x7C7B;&#x578B;&#x7BC7;&#xFF1A;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对常量的引用："><span class="nav-number">1.0.1.</span> <span class="nav-text"><a href="#&#x5BF9;&#x5E38;&#x91CF;&#x7684;&#x5F15;&#x7528;&#xFF1A;" class="headerlink" title="&#x5BF9;&#x5E38;&#x91CF;&#x7684;&#x5F15;&#x7528;&#xFF1A;"></a>&#x5BF9;&#x5E38;&#x91CF;&#x7684;&#x5F15;&#x7528;&#xFF1A;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#辨析：指向常量的指针-和-常量指针"><span class="nav-number">1.0.2.</span> <span class="nav-text"><a href="#&#x8FA8;&#x6790;&#xFF1A;&#x6307;&#x5411;&#x5E38;&#x91CF;&#x7684;&#x6307;&#x9488;-&#x548C;-&#x5E38;&#x91CF;&#x6307;&#x9488;" class="headerlink" title="&#x8FA8;&#x6790;&#xFF1A;&#x6307;&#x5411;&#x5E38;&#x91CF;&#x7684;&#x6307;&#x9488; &#x548C; &#x5E38;&#x91CF;&#x6307;&#x9488;"></a>&#x8FA8;&#x6790;&#xFF1A;&#x6307;&#x5411;&#x5E38;&#x91CF;&#x7684;&#x6307;&#x9488; &#x548C; &#x5E38;&#x91CF;&#x6307;&#x9488;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#顶层const与底层const：（以前一直没有想通的问题）"><span class="nav-number">1.0.3.</span> <span class="nav-text"><a href="#&#x9876;&#x5C42;const&#x4E0E;&#x5E95;&#x5C42;const&#xFF1A;&#xFF08;&#x4EE5;&#x524D;&#x4E00;&#x76F4;&#x6CA1;&#x6709;&#x60F3;&#x901A;&#x7684;&#x95EE;&#x9898;&#xFF09;" class="headerlink" title="&#x9876;&#x5C42;const&#x4E0E;&#x5E95;&#x5C42;const&#xFF1A;&#xFF08;&#x4EE5;&#x524D;&#x4E00;&#x76F4;&#x6CA1;&#x6709;&#x60F3;&#x901A;&#x7684;&#x95EE;&#x9898;&#xFF09;"></a>&#x9876;&#x5C42;const&#x4E0E;&#x5E95;&#x5C42;const&#xFF1A;&#xFF08;&#x4EE5;&#x524D;&#x4E00;&#x76F4;&#x6CA1;&#x6709;&#x60F3;&#x901A;&#x7684;&#x95EE;&#x9898;&#xFF09;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#auto类型说明符"><span class="nav-number">1.0.4.</span> <span class="nav-text"><a href="#auto&#x7C7B;&#x578B;&#x8BF4;&#x660E;&#x7B26;" class="headerlink" title="auto&#x7C7B;&#x578B;&#x8BF4;&#x660E;&#x7B26;"></a>auto&#x7C7B;&#x578B;&#x8BF4;&#x660E;&#x7B26;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#decltype和引用："><span class="nav-number">1.0.5.</span> <span class="nav-text"><a href="#decltype&#x548C;&#x5F15;&#x7528;&#xFF1A;" class="headerlink" title="decltype&#x548C;&#x5F15;&#x7528;&#xFF1A;"></a>decltype&#x548C;&#x5F15;&#x7528;&#xFF1A;</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">弗卡斯</span>
+
+  
+</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共33.0k字</span>
+</div>
+<!--
+</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+-->
+
+
+<!--
+
+  <span class="post-meta-divider">|</span>
+
+-->
+
+<br>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'J9lVBg7bpt7zV1Ibqnu5uTxY-gzGzoHsz',
+        appKey: 'szURUNWm9A82HqH9Bxoiae8k',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="图形学," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1：计算机绘图方式：屏幕显示、打印机打印屏幕上的图样和绘图机输出图样2：像素：像素是组成图形的基本元素，一般称为“点”。通过点亮一些像素，灭掉一些像素，即在屏幕上产生图形。在光栅显示器上显示任何一种图形，在显示器的相应像素点上画上所需的像素点，即具有一种或多种颜色的像素集合 构成图形。确定最佳逼近图形的像素集合，并用指定属性写像素的过程称为 扫描转换或者光栅化。对于一维图形，在不考虑线宽时，用一个">
+<meta name="keywords" content="图形学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图形学复习文档">
+<meta property="og:url" content="http://yoursite.com/2017/04/26/e5-9b-be-e5-bd-a2-e5-ad-a6-e5-a4-8d-e4-b9-a0-e6-96-87-e6-a1-a3/index.html">
+<meta property="og:site_name" content="弗卡斯的小站">
+<meta property="og:description" content="1：计算机绘图方式：屏幕显示、打印机打印屏幕上的图样和绘图机输出图样2：像素：像素是组成图形的基本元素，一般称为“点”。通过点亮一些像素，灭掉一些像素，即在屏幕上产生图形。在光栅显示器上显示任何一种图形，在显示器的相应像素点上画上所需的像素点，即具有一种或多种颜色的像素集合 构成图形。确定最佳逼近图形的像素集合，并用指定属性写像素的过程称为 扫描转换或者光栅化。对于一维图形，在不考虑线宽时，用一个">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-09T17:06:50.784Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图形学复习文档">
+<meta name="twitter:description" content="1：计算机绘图方式：屏幕显示、打印机打印屏幕上的图样和绘图机输出图样2：像素：像素是组成图形的基本元素，一般称为“点”。通过点亮一些像素，灭掉一些像素，即在屏幕上产生图形。在光栅显示器上显示任何一种图形，在显示器的相应像素点上画上所需的像素点，即具有一种或多种颜色的像素集合 构成图形。确定最佳逼近图形的像素集合，并用指定属性写像素的过程称为 扫描转换或者光栅化。对于一维图形，在不考虑线宽时，用一个">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/26/e5-9b-be-e5-bd-a2-e5-ad-a6-e5-a4-8d-e4-b9-a0-e6-96-87-e6-a1-a3/"/>
+
+
+
+
+
+  <title>图形学复习文档 | 弗卡斯的小站</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">弗卡斯的小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/26/e5-9b-be-e5-bd-a2-e5-ad-a6-e5-a4-8d-e4-b9-a0-e6-96-87-e6-a1-a3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="a1anpro">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="弗卡斯的小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">图形学复习文档</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-26T11:39:27+08:00">
+                2017-04-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web学习整理/" itemprop="url" rel="index">
+                    <span itemprop="name">web学习整理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/26/e5-9b-be-e5-bd-a2-e5-ad-a6-e5-a4-8d-e4-b9-a0-e6-96-87-e6-a1-a3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/04/26/e5-9b-be-e5-bd-a2-e5-ad-a6-e5-a4-8d-e4-b9-a0-e6-96-87-e6-a1-a3/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1：计算机绘图方式：<br>屏幕显示、打印机打印屏幕上的图样和绘图机输出图样<br>2：像素：<br>像素是组成图形的基本元素，一般称为“点”。<br>通过点亮一些像素，灭掉一些像素，即在屏幕上产生图形。在光栅显示器上显示任何一种图形，在显示器的相应像素点上画上所需的像素点，即具有一种或多种颜色的像素集合 构成图形。<br>确定最佳逼近图形的像素集合，并用指定属性写像素的过程称为 扫描转换或者光栅化。<br>对于一维图形，在不考虑线宽时，用一个像素宽的直、曲线来显示图形。<br>二维图形光栅化必须确定区域对应的像素集合，并用指定的属性和图案进行显示，即区域填充。<a id="more"></a><br>3：直线算法：<br>数值微分法（DDA）：DDA算法主要是根据直线公式y = kx + b来推导出来的，其关键之处在于如何设定单位步进，即一个方向的步进为单位步进，另一个方向的步进必然是小于1<br><a href="http://blog.csdn.net/clever101/article/details/6076841" target="_blank" rel="noopener">dda和bresenham算法的区别</a><br>Bresenham算法是DDA算法画线算法的一种改进算法。本质上它也是采取了步进的思想。不过它比DDA算法作了优化，避免了步进时浮点数运算，同时为选取符合直线方程的点提供了一个好思路<br>算法的基本原理：类似于中点法，由误差项符号决定下一个像素取右边点还是右上点。<br>该算法的巧妙之处就在于：采用了增量计算，使得对每一列，只要检查一个误差项的符号，就可以确定该列所求像素。</p>
+<p>4：圆<br>在进行扫描转换之前，假设圆的圆心位于坐标原点（如果圆心不在原点，可以通过坐标平移使其与原点重合），半径为R。以原点为圆心的圆C有四条对称轴：x = 0, y = 0, x = y和x = -y。若已知圆弧上一点P1＝C（x, y），利用其对称性便可以得到关于四条对称轴的其它7个点，即：<br>P2＝C（x,－y），<br>P3＝C（－x, y），<br>P4＝C（－x,－y），<br>P5＝C（y，x），<br>P6＝C（－y，x），<br>P7＝C（y，－x），<br>P8＝C（－y，－x）。<br>这种性质称为八对称性。<br>因此，只要扫描转换八分之一圆弧，就可以通过圆弧的八对称性得到整个圆。<a href="http://blog.csdn.net/bagboy_taobao_com/article/details/5774628" target="_blank" rel="noopener">bresenham和中点画圆法</a><br>中点画圆法：中点画圆算法就是每部单位间隔取样并且计算离圆最近的位置<br>bresenham画圆：是对中点画圆法的改进，减少了浮点运算，提高了运算效率<br>算法原理：中点画圆法中，计算判别式d使用了浮点运算，影响了圆的生成效率。如果能将判别式规约到整数运算，则可以简化计算，提高效率。于是人们针对中点画圆法进行了多种改进，其中一种方式是将d的初始值由1.25 – R改成1 – R，考虑到圆的半径R总是大于2，因此这个修改不会响d的初始值的符号，同时可以避免浮点运算。还有一种方法是将d的计算放大两倍，同时将初始值改成3 – 2R，这样避免了浮点运算，乘二运算也可以用移位快速代替，采用3 – 2R为初始值的改进算法，又称为Bresenham算法</p>
+<p>5：多边形的扫描转换：<br>矩形是特殊的多边形，但一般多边形扫描算法要用到复杂的数据结构，效率不高，而矩形常用而且经常会用到，所以一般图形软件包把它作为一类基本土元加以设计<br>Q:共享边会重复绘制，那么边界属于谁？<br>A:处理规则，左闭右开，下闭上开（左下原则）<br>多边形的两种表示方法：顶点表示：用多边形的顶点序列（P0，P1…PN)来表示多边形）特点：直观，几何意义强。但是没有指明哪些像素在多边形内部<br>点阵表示：用位于多边形内的像素集合来刻画多边形。丢失了几何信息。<br>光栅图形的一个基本问题：把多边形的顶点表示转换为点阵表示。这种转换成为 多边形的扫描转换<br>凸多边形任意两顶点间的：任意两顶点之间的连线均在多边形内<br>凹多边形：任意两顶点间的连线有不在多边形内部的</p>
+<p>扫描线算法：对不自交多边形<br>扫描线多边形区域填充算法：<br>按扫描线顺序，计算扫描线与多边形的相交区间，再用要求的颜色显示这些区间的像素，即完成填充。区间的端点可以通过计算扫描线和多边形边界线的交点获得。<br>算法描述：1：求交，计算扫描线与多边形边界的交点<br>2：排序，把所有交点按x递增的顺序排序<br>3：配对，第一个与第二个，第三个与第四个。。。每对交点代表扫描线与多边形的一个相交区间<br>4：填色，把相交区间内的像素置成多边形颜色，把相交区间外的像素置成背景色<br>关键问题：求交，为了减少求交的计算量，可以利用边的连贯性：相邻扫描线与边的交点的坐标有连贯性。</p>
+<p>种子填充算法：<br>6：4向连通和8向连通区域填充的算法：假设在多边形内有一像素（种子）已知，由此出发利用连通性找到区域内的所有像素。利用栈实现</p>
+<p>7：字符：<br>字符编码：8位或16位<br>字符存储：点阵形式如8<em>8,16</em>8,24*24等形式表示的字库<br>存储了每个字符的形状信息，方便在显示器等输出设备上输出。字库中分为矢量型和点阵型</p>
+<p>点阵字符：每个字符由一个位图表示。该位位1表示画笔经过此位，对应于此位的像素应置为字符的颜色。该位位0表示不经过，对应于此位的像素应该置为背景颜色<br>矢量字符：矢量字符记录字符的画笔信息而不是整个位图，具有存储空间小、美观、变换方便等优点。<br>对于字符的变换需要表示字符位图中的每一个像素进行；而矢量字符只要对其笔画端点进行变换就ok<br>显示：矢量字符和点阵字符的显示都分为两步：首先要从字库中将字符的位图检索出来。然后将检索到的位图写到帧缓冲器去/取出端点坐标，对其进行适当的几何变换，再根据各端点的标志显示出字符。</p>
+<p>8：线性插值：<br>內插是数学领域数值分析中的通过已知的离散数据求未知数据的过程或方法。<br>根据若干离散的数据数据，得到一个连续的函数（也就是曲线）或者更加密集的离散方程与已知数据相吻合。这个过程叫做拟合。內插是曲线必须通过已知点的拟合。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续分享~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="a1anpro 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="a1anpro 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/图形学/" rel="tag"># 图形学</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/21/session-e5-92-8ccookie-e7-9a-84-e5-8c-ba-e5-88-ab/" rel="next" title="Session和Cookie的区别">
+                <i class="fa fa-chevron-left"></i> Session和Cookie的区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/04/e6-ac-b2-e6-9c-9b-e5-92-8c-e6-97-b6-e9-97-b4/" rel="prev" title="欲望和时间">
+                欲望和时间 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="a1anpro" />
+            
+              <p class="site-author-name" itemprop="name">a1anpro</p>
+              <p class="site-description motion-element" itemprop="description">为了星辰和大海</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/a1anpro" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:alanyanhui@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.douban.com/people/53248239" target="_blank" title="douban">
+                    
+                      <i class="fa fa-fw fa-globe"></i>douban</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">弗卡斯</span>
+
+  
+</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共33.0k字</span>
+</div>
+<!--
+</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+-->
+
+
+<!--
+
+  <span class="post-meta-divider">|</span>
+
+-->
+
+<br>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'J9lVBg7bpt7zV1Ibqnu5uTxY-gzGzoHsz',
+        appKey: 'szURUNWm9A82HqH9Bxoiae8k',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

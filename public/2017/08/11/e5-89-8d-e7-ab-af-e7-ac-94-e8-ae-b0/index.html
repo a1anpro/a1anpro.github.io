@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="css 样式由选择符和声明组成，而声明又由属性和值组成: 选择符：又称选择器，指明网页中要应用样式规则的元素，如本例中是网页中所有的段（p）的文字将变成蓝色，而其他的元素（如ol）不会受到影响。 声明：在英文大括号“｛｝”中的的就是声明，属性和值之间用英文冒号“：”分隔。当有多条声明时，中间可以英文分号“;”分隔，如下所示：">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端笔记之CSS">
+<meta property="og:url" content="http://yoursite.com/2017/08/11/e5-89-8d-e7-ab-af-e7-ac-94-e8-ae-b0/index.html">
+<meta property="og:site_name" content="弗卡斯的小站">
+<meta property="og:description" content="css 样式由选择符和声明组成，而声明又由属性和值组成: 选择符：又称选择器，指明网页中要应用样式规则的元素，如本例中是网页中所有的段（p）的文字将变成蓝色，而其他的元素（如ol）不会受到影响。 声明：在英文大括号“｛｝”中的的就是声明，属性和值之间用英文冒号“：”分隔。当有多条声明时，中间可以英文分号“;”分隔，如下所示：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.alanpro.win/wp-content/uploads/2017/08/css.png">
+<meta property="og:image" content="http://www.alanpro.win/wp-content/uploads/2017/08/padding-1024x615.png">
+<meta property="og:image" content="http://www.alanpro.win/wp-content/uploads/2017/08/盒模型的宽度图.jpg">
+<meta property="og:updated_time" content="2017-12-09T17:06:50.795Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端笔记之CSS">
+<meta name="twitter:description" content="css 样式由选择符和声明组成，而声明又由属性和值组成: 选择符：又称选择器，指明网页中要应用样式规则的元素，如本例中是网页中所有的段（p）的文字将变成蓝色，而其他的元素（如ol）不会受到影响。 声明：在英文大括号“｛｝”中的的就是声明，属性和值之间用英文冒号“：”分隔。当有多条声明时，中间可以英文分号“;”分隔，如下所示：">
+<meta name="twitter:image" content="http://www.alanpro.win/wp-content/uploads/2017/08/css.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/11/e5-89-8d-e7-ab-af-e7-ac-94-e8-ae-b0/"/>
+
+
+
+
+
+  <title>前端笔记之CSS | 弗卡斯的小站</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">弗卡斯的小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/11/e5-89-8d-e7-ab-af-e7-ac-94-e8-ae-b0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="a1anpro">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="弗卡斯的小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">前端笔记之CSS</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-11T15:35:49+08:00">
+                2017-08-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web学习整理/" itemprop="url" rel="index">
+                    <span itemprop="name">web学习整理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/11/e5-89-8d-e7-ab-af-e7-ac-94-e8-ae-b0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/08/11/e5-89-8d-e7-ab-af-e7-ac-94-e8-ae-b0/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>css 样式由<strong>选择符</strong>和<strong>声明</strong>组成，而<strong>声明</strong>又由<strong>属性</strong>和<strong>值</strong>组成:<img src="http://www.alanpro.win/wp-content/uploads/2017/08/css.png" alt=""></p>
+<p><strong>选择符：</strong>又称选择器，指明网页中要应用样式规则的元素，如本例中是网页中所有的段（p）的文字将变成蓝色，而其他的元素（如ol）不会受到影响。</p>
+<p><strong>声明：</strong>在英文大括号“｛｝”中的的就是声明，属性和值之间用英文冒号“：”分隔。当有多条声明时，中间可以英文分号“;”分隔，如下所示：<a id="more"></a></p>
+<p>p{</p>
+<p>font-size:12px;</p>
+<p>color:red;</p>
+<p>}</p>
+<p>CSS样式可以写在哪些地方呢？从CSS 样式代码插入的形式来看基本可以分为以下3种：内联式(直接写在开始的style属性里)、嵌入式(将css放在style标签中，并将标签放在head中)和外部式(&lt;link href=”<strong>base.css</strong>“ rel=”stylesheet” type=”text/css” /&gt;)三种.</p>
+<p>三者的优先级：内联式 &gt; 嵌入式 &gt; 外部式—&gt;总结来说，就是–就近原则（离被设置元素越近优先级别越高）。</p>
+<hr>
+<p>选择器：</p>
+<p>类选择器在css样式编码中是最常用到的。</p>
+<p>语法：</p>
+<p>.类选器名称{css样式代码;}</p>
+<p>使用的时候，在标签内加class=”类选择器名称”.注意设置类选择器的时候，名字前面要用英文的”.”</p>
+<p>id选择器：#id选择器名称{…}</p>
+<p>在使用的时候，加上id=”id选择器名称”</p>
+<h3 id="id选择器和类选择器的异同点："><a href="#id选择器和类选择器的异同点：" class="headerlink" title="id选择器和类选择器的异同点："></a>id选择器和类选择器的异同点：</h3><p><strong>相同点：</strong>可以应用于任何元素<br><strong>不同点：</strong></p>
+<p>1、<strong>ID选择器只能在文档中使用一次</strong>。与类选择器不同，在一个HTML文档中，ID选择器只能使用一次，而且仅一次。而类选择器可以使用多次。</p>
+<p>2、<strong>可以使用类选择器词列表方法为一个元素同时设置多个样式。</strong>我们可以为一个元素同时设多个样式，但只可以用类选择器的方法实现，ID选择器是不可以的（<strong>不能使用 ID 词列表）。</strong></p>
+<h3 id="子选择器：（直接后代）"><a href="#子选择器：（直接后代）" class="headerlink" title="子选择器：（直接后代）"></a>子选择器：（直接后代）</h3><p>即大于符号(&gt;),用于选择指定标签元素的<strong>第一代子元素。</strong>如右侧代码编辑器中的代码：</p>
+<p>.food&gt;li{border:1px solid red;}<br>这行代码会使class名为food下的子元素li加入红色实线边框。</p>
+<h3 id="包含选择器："><a href="#包含选择器：" class="headerlink" title="包含选择器："></a>包含选择器：</h3><p>即加入空格,用于选择指定标签元素下的<strong>后辈元素。</strong></p>
+<p>请注意这个选择器与子选择器的区别，子选择器（child selector）仅是指它的直接后代，或者你可以理解为作用于子元素的第一代后代。而后代选择器是作用于所有子后代元素。</p>
+<p>通用选择器：*{..}，应用于所有html标签内容</p>
+<h3 id="伪类选择符："><a href="#伪类选择符：" class="headerlink" title="伪类选择符："></a>伪类选择符：</h3><p>它允许给html不存在的标签（标签的某种状态）设置样式，比如说我们给html中一个标签元素的鼠标滑过的状态来设置字体颜色：</p>
+<p><pre class="code">a:hover{color:red;}</pre><br>上面一行代码就是为 a 标签鼠标滑过的状态设置字体颜色变红。这样就会使第一段文字内容中的“胆小如鼠”文字加入<strong>鼠标滑过</strong>字体颜色变为红色特效。 一般伪类选择符是a:hover的用法</p>
+<p>&nbsp;</p>
+<hr>
+<p>浏览器会根据权值来判断使用哪种css样式：<strong>标签的权值为1，类选择符的权值为10，ID选择符的权值最高为100</strong></p>
+<hr>
+<p>css的格式化排版：</p>
+<p>字体：font-family</p>
+<p>字号：font-size</p>
+<p>粗体：font-weight:bold</p>
+<p>斜体：font-style:italic</p>
+<p>下划线：text-decoration:underline</p>
+<p>删除线：text-decoration:lint-through</p>
+<p>缩进：text-indent:2em</p>
+<p>行高/行间距：line-height:2em</p>
+<p>字间距：word-spacing:50px</p>
+<p>对齐：text-align:center</p>
+<hr>
+<p>元素分类：<span style="color: #ff0000;">块状元素、内联元素、内联块状元素</span>。可以通过display属性来设置分别是：block/inline/inline-block</p>
+<p><span style="color: #ff0000;">块状元素（&lt;div&gt;、 &lt;p&gt;、&lt;h1&gt;、&lt;form&gt;、&lt;ul&gt; 和 &lt;li&gt;）</span>的特点：在不设置宽度的情况下，显示为父容器的100%、元素的高度、宽度、行高、顶和底边距都可以设置</p>
+<p><span style="color: #ff0000;">内联元素（&lt;span&gt;、&lt;a&gt;、&lt;label&gt;、 &lt;strong&gt; 和&lt;em&gt;）</span>的特点：和其他元素都在一行上；元素的高度、宽度及顶部和底部边距<span style="color: #ff0000;"><strong>不可</strong></span>设置；元素的宽度就是它包含的文字或图片的宽度，<span style="color: #ff0000;">不可</span>改变。</p>
+<p><span style="color: #ff0000;">内联块状元素（&lt;img&gt;、&lt;input&gt;）</span>的特点：和其他元素都在一行上；<span style="color: #ff0000;">元素的高度、宽度、行高以及顶和底边距都可设置。</span></p>
+<p>盒子模型：块状标签都具有盒子模型的特征。<a href="http://zh.learnlayout.com/" target="_blank" rel="noopener">http://zh.learnlayout.com/</a></p>
+<p>&nbsp;</p>
+<p>内填充padding</p>
+<p>外边距margin</p>
+<p>边框border</p>
+<p>它们都是有方向的：</p>
+<p><img src="http://www.alanpro.win/wp-content/uploads/2017/08/padding-1024x615.png" alt=""></p>
+<p>同padding，margin和border也有上下左右四个方向</p>
+<p>盒模型的元素的实际宽度（盒子的宽度）：<img src="http://www.alanpro.win/wp-content/uploads/2017/08/盒模型的宽度图.jpg" alt=""></p>
+<p>总结一下：padding和margin的区别，padding在边框里，margin在边框外。</p>
+<hr>
+<p>在网页中，元素有三种布局模型：<br>1、流动模型（Flow）默认的网页布局模式。a)<strong>块状元素</strong>都会在所处的<strong>包含元素内</strong>自上而下按顺序垂直延伸分布，因为在默认状态下，块状元素的宽度都为<strong>100%。b)内联 元素都会在所处的包含元素内从左到右水平分布显示。（内联元素可不像块状元素这么霸道独占一行）(em/a/span/strong都是内联元素)</strong><br>2、浮动模型 (Float)可以在选择器中设置float属性来让块状元素浮动，让它们不占有一行<br>3、层模型（Layer）三种形式：<strong>绝对定位</strong>(position: absolute)、<strong>相对定位</strong>(position: relative)、<strong>固定定位</strong>(position: fixed)</p>
+<p>relative和absolute可以组合使用，不过relative需要是absolute的父标签。</p>
+<hr>
+<p>适当的运用css代码缩写，占用更少的带宽。盒模型、颜色、字体都可以缩写</p>
+<p>长度值：目前比较常用到px（像素）、em、% 百分比，要注意其实这三种单位都是相对单位。px是相对于显示器的小点、em是相对于设置的font-size、行高行间距也是以font-size为参照的</p>
+<hr>
+<p>水平居中：</p>
+<p>行内元素：当被设置的元素是文本、图片等行内元素时，水平居中通过父元素设置：text-align:center;</p>
+<p>如果被设置的元素不是行内元素，而是块状元素的话，就不能用这个方法了：</p>
+<p>定宽块状元素：可以指定宽度width,将它设置为固定值。满足定宽和块状两个条件的元素是可以通过设置“左右margin”值为“auto”来实现居中的。</p>
+<p><span style="color: #ff0000;">不定宽块状元素</span>：网页上的分页导航，因为分页的数量是不确定的，所以我们不能通过设置宽度来限制它的弹性。<span lang="EN-US">(</span>不定宽块状元素：块状元素的宽度<span lang="EN-US">width</span>不固定)</p>
+<ol>
+<li>方法1：加入table标签，因为它是长度自适应性的，长度是根据其内文本长度决定，用margin:0px auto;上下外边距为0，左右自动</li>
+<li>方法2：改变元素的display类型为inline，就变成了行内元素，然后用text-align:center来设置居中效果。</li>
+<li>方法3：通过给父元素设置<span lang="EN-US"> float</span>，然后给父元素设置 <span lang="EN-US">position:relative</span><span lang="EN-US"> </span>和<span lang="EN-US"> left:50%</span>，子元素设置<span lang="EN-US"> position:relative </span>和<span lang="EN-US"> left: </span><span lang="EN-US">-50%</span><span lang="EN-US"> </span>来实现水平居中。</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续分享~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="a1anpro 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="a1anpro 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/07/ubuntu-e4-b8-8b-e5-b8-b8-e7-94-a8-e7-9a-84-e5-91-bd-e4-bb-a4-e8-ae-b0-e5-bd-95/" rel="next" title="linux下常用的命令">
+                <i class="fa fa-chevron-left"></i> linux下常用的命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/11/e5-89-8d-e7-ab-af-e7-ac-94-e8-ae-b0-e4-b9-8b-e7-bd-91-e9-a1-b5-e5-b8-83-e5-b1-80/" rel="prev" title="前端笔记之网页布局">
+                前端笔记之网页布局 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="a1anpro" />
+            
+              <p class="site-author-name" itemprop="name">a1anpro</p>
+              <p class="site-description motion-element" itemprop="description">为了星辰和大海</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/a1anpro" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:alanyanhui@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.douban.com/people/53248239" target="_blank" title="douban">
+                    
+                      <i class="fa fa-fw fa-globe"></i>douban</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#id选择器和类选择器的异同点："><span class="nav-number">1.</span> <span class="nav-text"><a href="#id&#x9009;&#x62E9;&#x5668;&#x548C;&#x7C7B;&#x9009;&#x62E9;&#x5668;&#x7684;&#x5F02;&#x540C;&#x70B9;&#xFF1A;" class="headerlink" title="id&#x9009;&#x62E9;&#x5668;&#x548C;&#x7C7B;&#x9009;&#x62E9;&#x5668;&#x7684;&#x5F02;&#x540C;&#x70B9;&#xFF1A;"></a>id&#x9009;&#x62E9;&#x5668;&#x548C;&#x7C7B;&#x9009;&#x62E9;&#x5668;&#x7684;&#x5F02;&#x540C;&#x70B9;&#xFF1A;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子选择器：（直接后代）"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5B50;&#x9009;&#x62E9;&#x5668;&#xFF1A;&#xFF08;&#x76F4;&#x63A5;&#x540E;&#x4EE3;&#xFF09;" class="headerlink" title="&#x5B50;&#x9009;&#x62E9;&#x5668;&#xFF1A;&#xFF08;&#x76F4;&#x63A5;&#x540E;&#x4EE3;&#xFF09;"></a>&#x5B50;&#x9009;&#x62E9;&#x5668;&#xFF1A;&#xFF08;&#x76F4;&#x63A5;&#x540E;&#x4EE3;&#xFF09;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包含选择器："><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5305;&#x542B;&#x9009;&#x62E9;&#x5668;&#xFF1A;" class="headerlink" title="&#x5305;&#x542B;&#x9009;&#x62E9;&#x5668;&#xFF1A;"></a>&#x5305;&#x542B;&#x9009;&#x62E9;&#x5668;&#xFF1A;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#伪类选择符："><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x4F2A;&#x7C7B;&#x9009;&#x62E9;&#x7B26;&#xFF1A;" class="headerlink" title="&#x4F2A;&#x7C7B;&#x9009;&#x62E9;&#x7B26;&#xFF1A;"></a>&#x4F2A;&#x7C7B;&#x9009;&#x62E9;&#x7B26;&#xFF1A;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">弗卡斯</span>
+
+  
+</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共33.0k字</span>
+</div>
+<!--
+</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+-->
+
+
+<!--
+
+  <span class="post-meta-divider">|</span>
+
+-->
+
+<br>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'J9lVBg7bpt7zV1Ibqnu5uTxY-gzGzoHsz',
+        appKey: 'szURUNWm9A82HqH9Bxoiae8k',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
